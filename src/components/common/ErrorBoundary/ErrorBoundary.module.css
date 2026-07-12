@@ -1,0 +1,33 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  min-height: 100vh;
+  padding: var(--space-8);
+  text-align: center;
+}
+
+.title {
+  font-size: var(--font-size-3xl);
+}
+
+.text {
+  color: var(--color-text-secondary);
+  max-width: 48ch;
+}
+
+.button {
+  margin-top: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent-contrast);
+  background-color: var(--color-accent);
+  border-radius: var(--radius-pill);
+  transition: background-color var(--transition-base) var(--ease-standard);
+}
+
+.button:hover {
+  background-color: var(--color-accent-hover);
+}

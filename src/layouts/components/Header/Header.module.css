@@ -1,0 +1,124 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  background-color: color-mix(in srgb, var(--color-bg-base) 82%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition:
+    border-color var(--transition-base) var(--ease-standard),
+    box-shadow var(--transition-base) var(--ease-standard);
+}
+
+.scrolled {
+  border-bottom-color: var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  height: var(--header-height);
+}
+
+.brand {
+  display: inline-flex;
+  color: var(--color-text-primary);
+}
+
+.brand:hover {
+  opacity: 0.8;
+}
+
+.desktopNav {
+  display: none;
+  align-items: center;
+  gap: var(--space-2);
+  margin-inline: auto;
+}
+
+.navLink {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-base) var(--ease-standard);
+}
+
+.navLink:hover {
+  color: var(--color-text-primary);
+}
+
+.navLink.active {
+  color: var(--color-text-primary);
+}
+
+.actions {
+  display: none;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.menuToggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: var(--color-text-primary);
+  border-radius: var(--radius-sm);
+}
+
+.menuToggle:hover {
+  background-color: var(--color-bg-muted);
+}
+
+/* --- Mobile nav panel --- */
+.mobileNav {
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-bg-base);
+  padding-block: var(--space-4);
+}
+
+.mobileNavInner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.mobileLink {
+  padding: var(--space-3) var(--space-2);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-sm);
+}
+
+.mobileLink:hover,
+.mobileLink.active {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-subtle);
+}
+
+.mobileActions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+/* --- Responsive: show desktop nav from tablet up --- */
+@media (min-width: 900px) {
+  .desktopNav,
+  .actions {
+    display: flex;
+  }
+
+  .menuToggle,
+  .mobileNav {
+    display: none;
+  }
+}

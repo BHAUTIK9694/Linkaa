@@ -1,0 +1,27 @@
+.section {
+  padding-block: var(--section-padding-y);
+}
+
+.base {
+  background-color: var(--color-bg-base);
+  color: var(--color-text-primary);
+}
+
+.subtle {
+  background-color: var(--color-bg-subtle);
+  color: var(--color-text-primary);
+}
+
+.inverse {
+  background-color: var(--color-bg-inverse);
+  color: var(--color-text-inverse);
+}
+
+/* Invert heading/paragraph colors when the section is dark */
+.inverse :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--color-text-inverse);
+}
+
+.inverse p {
+  color: var(--color-grey-300);
+}

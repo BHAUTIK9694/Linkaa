@@ -1,0 +1,125 @@
+.footer {
+  background-color: var(--color-bg-inverse);
+  color: var(--color-grey-300);
+  padding-block: var(--space-20) var(--space-8);
+}
+
+.top {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+  padding-bottom: var(--space-12);
+  border-bottom: 1px solid var(--color-border-inverse);
+}
+
+.brand {
+  display: inline-flex;
+  color: var(--color-white);
+}
+
+.brandCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  max-width: 340px;
+}
+
+.blurb {
+  color: var(--color-grey-400);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+}
+
+.social {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--color-grey-300);
+  border: 1px solid var(--color-border-inverse);
+  border-radius: var(--radius-circle);
+  transition:
+    color var(--transition-base) var(--ease-standard),
+    border-color var(--transition-base) var(--ease-standard),
+    background-color var(--transition-base) var(--ease-standard);
+}
+
+.socialLink:hover {
+  color: var(--color-black);
+  background-color: var(--color-white);
+  border-color: var(--color-white);
+}
+
+.navGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-8);
+}
+
+.navGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.navTitle {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-white);
+}
+
+.navList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.navLink {
+  font-size: var(--font-size-sm);
+  color: var(--color-grey-400);
+  transition: color var(--transition-base) var(--ease-standard);
+}
+
+.navLink:hover {
+  color: var(--color-white);
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-top: var(--space-8);
+}
+
+.copy,
+.contact {
+  font-size: var(--font-size-sm);
+  color: var(--color-grey-400);
+}
+
+@media (min-width: 700px) {
+  .navGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .bottom {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 960px) {
+  .top {
+    grid-template-columns: 1.4fr 2fr;
+    gap: var(--space-16);
+  }
+}
