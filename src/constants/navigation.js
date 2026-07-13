@@ -1,9 +1,9 @@
-import { ROUTES } from './routes';
+import { ANCHORS, ROUTES } from './routes';
 
 /** Primary navigation links used in the header. */
 export const NAV_LINKS = [
-  { id: 'features', label: 'Features', to: ROUTES.FEATURES },
-  { id: 'pricing', label: 'Pricing', to: ROUTES.PRICING },
+  { id: 'collections', label: 'Collections', to: ANCHORS.COLLECTIONS },
+  { id: 'craft', label: 'Craftsmanship', to: ROUTES.FEATURES },
   { id: 'about', label: 'About', to: ROUTES.ABOUT },
   { id: 'contact', label: 'Contact', to: ROUTES.CONTACT },
 ];
@@ -11,32 +11,33 @@ export const NAV_LINKS = [
 /** Grouped footer navigation. */
 export const FOOTER_NAV = [
   {
-    id: 'product',
-    title: 'Product',
+    id: 'collections',
+    title: 'Collections',
     links: [
-      { id: 'features', label: 'Features', to: ROUTES.FEATURES },
-      { id: 'pricing', label: 'Pricing', to: ROUTES.PRICING },
-      { id: 'security', label: 'Security', to: ROUTES.FEATURES },
-      { id: 'integrations', label: 'Integrations', to: ROUTES.FEATURES },
+      { id: 'seating', label: 'Seating', to: ANCHORS.COLLECTIONS },
+      { id: 'tables', label: 'Tables', to: ANCHORS.COLLECTIONS },
+      { id: 'storage', label: 'Storage', to: ANCHORS.COLLECTIONS },
+      { id: 'bespoke', label: 'Bespoke', to: ROUTES.FEATURES },
     ],
   },
   {
     id: 'company',
     title: 'Company',
     links: [
-      { id: 'about', label: 'About', to: ROUTES.ABOUT },
-      { id: 'contact', label: 'Contact', to: ROUTES.CONTACT },
-      { id: 'careers', label: 'Careers', to: ROUTES.ABOUT },
-      { id: 'blog', label: 'Blog', to: ROUTES.ABOUT },
+      { id: 'about', label: 'Our story', to: ROUTES.ABOUT },
+      { id: 'craft', label: 'Craftsmanship', to: ROUTES.FEATURES },
+      { id: 'projects', label: 'Projects', to: ROUTES.ABOUT },
+      { id: 'careers', label: 'Careers', to: ROUTES.CONTACT },
     ],
   },
   {
-    id: 'legal',
-    title: 'Legal',
+    id: 'support',
+    title: 'Support',
     links: [
-      { id: 'privacy', label: 'Privacy', to: ROUTES.HOME },
-      { id: 'terms', label: 'Terms', to: ROUTES.HOME },
-      { id: 'cookies', label: 'Cookies', to: ROUTES.HOME },
+      { id: 'showroom', label: 'Showroom', to: ROUTES.CONTACT },
+      { id: 'contact', label: 'Contact', to: ROUTES.CONTACT },
+      { id: 'care', label: 'Care & repair', to: ROUTES.CONTACT },
+      { id: 'faq', label: 'FAQ', to: ROUTES.CONTACT },
     ],
   },
 ];

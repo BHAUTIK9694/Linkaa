@@ -1,9 +1,9 @@
 {
-  "name": "linkaa-react",
+  "name": "livantaa-react",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Linkaa - enterprise-grade React web application",
+  "description": "Livantaa - enterprise-grade React web application",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

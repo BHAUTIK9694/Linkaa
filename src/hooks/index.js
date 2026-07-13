@@ -3,3 +3,5 @@ export { useMediaQuery } from './useMediaQuery';
 export { useScrollPosition } from './useScrollPosition';
 export { useDisclosure } from './useDisclosure';
 export { useDocumentTitle } from './useDocumentTitle';
+export { useInView } from './useInView';
+export { useParallax } from './useParallax';

@@ -1,4 +1,5 @@
 .section {
+  position: relative;
   padding-block: var(--section-padding-y);
 }
 
@@ -13,6 +14,7 @@
 }
 
 .inverse {
+  --heading-eyebrow-color: var(--color-gold-soft);
   background-color: var(--color-bg-inverse);
   color: var(--color-text-inverse);
 }

@@ -1,25 +1,26 @@
-import { Section, SectionHeading } from '@components/ui';
+import { FloatingLeaves, Reveal, Section, SectionHeading } from '@components/ui';
 import { StepCard } from '@components/common';
 import { STEPS } from '@constants/content';
 import styles from './HowItWorks.module.css';
 
 /**
- * Three-step "how it works" sequence.
+ * Three-step "our process" sequence, from consultation to delivery.
  */
 function HowItWorks({
-  eyebrow = 'How it works',
-  title = 'Up and running in three steps',
-  subtitle = 'Go from sign-up to your first automation without touching code.',
+  eyebrow = 'Our process',
+  title = 'From first sketch to your living room',
+  subtitle = 'A considered, transparent process — you are part of it at every stage.',
   items = STEPS,
 }) {
   return (
     <Section>
+      <FloatingLeaves count={5} theme="light" />
       <SectionHeading eyebrow={eyebrow} title={title} subtitle={subtitle} />
       <ol className={styles.grid}>
-        {items.map((step) => (
-          <li key={step.id}>
+        {items.map((step, index) => (
+          <Reveal key={step.id} as="li" variant="up" delay={index * 120}>
             <StepCard {...step} />
-          </li>
+          </Reveal>
         ))}
       </ol>
     </Section>

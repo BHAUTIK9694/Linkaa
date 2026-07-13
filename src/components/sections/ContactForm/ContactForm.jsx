@@ -56,7 +56,7 @@ function ContactForm() {
           required
         />
         <Input
-          label="Work email"
+          label="Email"
           name="email"
           type="email"
           value={values.email}
@@ -82,7 +82,9 @@ function ContactForm() {
 
         <div aria-live="polite" className={styles.status}>
           {status === 'success' && (
-            <p className={styles.success}>Thanks! We&apos;ll be in touch within one business day.</p>
+            <p className={styles.success}>
+              Thanks! We&apos;ll be in touch within one business day.
+            </p>
           )}
           {status === 'error' && (
             <p className={styles.error}>Something went wrong. Please try again.</p>

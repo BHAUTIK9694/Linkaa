@@ -2,15 +2,18 @@
   position: sticky;
   top: 0;
   z-index: var(--z-header);
-  background-color: color-mix(in srgb, var(--color-bg-base) 82%, transparent);
-  backdrop-filter: blur(12px);
+  background-color: color-mix(in srgb, var(--color-bg-base) 72%, transparent);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  backdrop-filter: blur(16px) saturate(160%);
   border-bottom: 1px solid transparent;
   transition:
+    background-color var(--transition-base) var(--ease-standard),
     border-color var(--transition-base) var(--ease-standard),
     box-shadow var(--transition-base) var(--ease-standard);
 }
 
 .scrolled {
+  background-color: color-mix(in srgb, var(--color-bg-base) 88%, transparent);
   border-bottom-color: var(--color-border);
   box-shadow: var(--shadow-sm);
 }
@@ -40,20 +43,38 @@
 }
 
 .navLink {
-  padding: var(--space-2) var(--space-3);
+  position: relative;
+  padding: var(--space-2) var(--space-1);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   color: var(--color-text-secondary);
-  border-radius: var(--radius-sm);
-  transition: color var(--transition-base) var(--ease-standard);
+  transition: color var(--duration-base) var(--ease-standard);
+}
+
+/* Animated underline that grows from the center on hover / active */
+.navLink span::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--color-accent);
+  transform: translateX(-50%);
+  transition: width var(--duration-base) var(--ease-expo);
 }
 
 .navLink:hover {
   color: var(--color-text-primary);
 }
 
+.navLink:hover span::after,
+.navLink.active span::after {
+  width: 100%;
+}
+
 .navLink.active {
-  color: var(--color-text-primary);
+  color: var(--color-accent);
 }
 
 .actions {

@@ -1,23 +1,25 @@
-import { Section, SectionHeading } from '@components/ui';
+import { Reveal, Section, SectionHeading } from '@components/ui';
 import { TestimonialCard } from '@components/common';
 import { TESTIMONIALS } from '@constants/content';
 import styles from './Testimonials.module.css';
 
 /**
- * Grid of customer testimonials.
+ * Grid of client stories.
  */
 function Testimonials({
-  eyebrow = 'Testimonials',
-  title = 'Trusted by teams that ship',
-  subtitle = 'See why operations, revenue, and security leaders choose Linkaa.',
+  eyebrow = 'Client stories',
+  title = 'Lived with, and loved',
+  subtitle = 'Homeowners, designers, and architects share what it means to own a Livantaa piece.',
   items = TESTIMONIALS,
 }) {
   return (
     <Section tone="subtle">
       <SectionHeading eyebrow={eyebrow} title={title} subtitle={subtitle} />
       <div className={styles.grid}>
-        {items.map((testimonial) => (
-          <TestimonialCard key={testimonial.id} {...testimonial} />
+        {items.map((testimonial, index) => (
+          <Reveal key={testimonial.id} variant="up" delay={index * 110}>
+            <TestimonialCard {...testimonial} />
+          </Reveal>
         ))}
       </div>
     </Section>

@@ -2,14 +2,14 @@
 inclusion: always
 ---
 
-# Linkaa — Engineering Steering Guide
+# Livantaa — Engineering Steering Guide
 
-The single source of truth for how we build the Linkaa web application.
+The single source of truth for how we build the Livantaa web application.
 **Always follow this guide** when writing, modifying, or reviewing code for this project.
 It defines the architecture, conventions, and standards that keep the codebase clean,
 consistent, and scalable.
 
-> **Golden rule:** favor small, reusable, well-named pieces. If you're about to
+> **Golden rule:** favour small, reusable, well-named pieces. If you are about to
 > hardcode a value or duplicate a component, stop and check this guide first.
 
 ---
@@ -48,7 +48,7 @@ pages → sections → common → ui → (styles · hooks · services · utils �
 ## 3. Folder Structure
 
 ```
-linkaa-react/
+livantaa-react/
 ├── public/                     # Static (favicons)
 ├── src/
 │   ├── assets/logos/           # Brand SVGs & PNGs (imported, not duplicated)
@@ -153,7 +153,7 @@ Layers:
 
 DRY checklist:
 1. Search existing components before creating new ones.
-2. Extend with a prop, don't copy.
+2. Extend with a prop, do not copy.
 3. Extract shared markup into a primitive.
 4. Never fork by copy-paste.
 5. Variant logic stays inside the component via a `variant` prop.
@@ -171,7 +171,7 @@ Global layer (`src/styles/`, imported in `main.jsx`):
 - `global.css` — imports above + selection, focus, sr-only, scrollbar
 
 Component layer rules:
-- **NEVER hardcode** colors, spacing, radii, shadows, font sizes, z-index, transitions.
+- **NEVER hardcode** colours, spacing, radii, shadows, font sizes, z-index, transitions.
 - Always reference `var(--token)`.
 - `camelCase` class names, shallow selectors (max 2 levels).
 - Co-locate module with component; import as `styles`.
@@ -179,10 +179,20 @@ Component layer rules:
 
 ---
 
-## 10. Design Tokens
+## 10. Design Tokens & Colour Palette
 
-All in `src/styles/variables.css`. Token groups:
-- Color primitives → Semantic colors (use semantic in components)
+All tokens live in `src/styles/variables.css`.
+
+**IMPORTANT — Strict monochrome palette:** The entire website uses ONLY black, white,
+and grey. No other colours are permitted anywhere in the UI. This applies to:
+- Buttons, links, and interactive elements
+- Section backgrounds and card surfaces
+- Text, borders, shadows, and decorative elements
+- Hover states, focus rings, and feedback indicators
+- Gradients, scrims, and glass effects
+
+Token groups:
+- Colour primitives → Semantic colours (always use semantic tokens in components)
 - Typography (font-family, size, weight, line-height, letter-spacing)
 - Spacing (4px scale: `--space-0` → `--space-32` + section rhythm)
 - Radius (`--radius-sm` → `--radius-circle`)
@@ -191,9 +201,9 @@ All in `src/styles/variables.css`. Token groups:
 - Z-index (named scale, never magic numbers)
 
 Rules:
-- Extend the scale; don't invent one-off values.
+- Extend the scale; do not invent one-off values.
 - Components use semantic tokens; primitives only when defining new semantic ones.
-- Dark mode: override semantic vars under `[data-theme='dark']`.
+- **Never introduce any colour outside the black/white/grey palette.**
 
 ---
 
@@ -215,7 +225,7 @@ Rules:
 - Every input has a `<label>`. Icon-only buttons use `aria-label`.
 - ARIA state on toggles (`aria-expanded`, `aria-controls`).
 - Decorative icons: `aria-hidden`. Meaningful icons: `title` prop.
-- Color contrast ≥ 4.5:1.
+- Colour contrast ≥ 4.5:1.
 - Reduced motion respected globally.
 
 ---
@@ -255,7 +265,19 @@ All network calls go through `services/`.
 
 ---
 
-## 16. Adding a New Page
+## 16. Content & Regional Context
+
+- Business is based in **Rajkot, Gujarat, India**.
+- All content must be written in standard, professional English.
+- Contact information, addresses, phone numbers use Indian formats.
+- Currency references use INR (₹) when applicable.
+- Timber references use species available in India (teak, sheesham, mango wood).
+- All copy lives in `src/constants/content.js` and `src/constants/site.js` — never
+  hardcoded in reusable components.
+
+---
+
+## 17. Adding a New Page
 
 1. Create `src/pages/PageName/PageName.jsx` + `index.js`
 2. Compose existing sections
@@ -267,7 +289,7 @@ All network calls go through `services/`.
 
 ---
 
-## 17. Adding a New Component
+## 18. Adding a New Component
 
 1. Pick layer: `ui`, `common`, or `sections`
 2. Create folder: `Name/Name.jsx`, `Name.module.css`, `index.js`
@@ -278,7 +300,7 @@ All network calls go through `services/`.
 
 ---
 
-## 18. Development Workflow
+## 19. Development Workflow
 
 ```bash
 npm install        # install deps
@@ -290,7 +312,7 @@ npm run preview    # preview prod build
 
 ---
 
-## 19. Git Conventions
+## 20. Git Conventions
 
 - Branches: `type/short-description` (feat/, fix/, chore/, docs/, refactor/)
 - Commits: Conventional Commits format
@@ -300,7 +322,7 @@ npm run preview    # preview prod build
 
 ---
 
-## 20. Recommended Libraries
+## 21. Recommended Libraries
 
 Only add when needed. Check bundle impact first.
 
@@ -327,14 +349,15 @@ Wrap third-party UI in our own component. Feed our tokens. Lazy-load heavy libs.
 
 ## Key References
 
-- Design tokens: `#[[file:linkaa-react/src/styles/variables.css]]`
-- Route definitions: `#[[file:linkaa-react/src/constants/routes.js]]`
-- Navigation config: `#[[file:linkaa-react/src/constants/navigation.js]]`
-- Content/copy: `#[[file:linkaa-react/src/constants/content.js]]`
-- UI barrel: `#[[file:linkaa-react/src/components/ui/index.js]]`
-- Common barrel: `#[[file:linkaa-react/src/components/common/index.js]]`
-- Sections barrel: `#[[file:linkaa-react/src/components/sections/index.js]]`
+- Design tokens: `#[[file:src/styles/variables.css]]`
+- Route definitions: `#[[file:src/constants/routes.js]]`
+- Navigation config: `#[[file:src/constants/navigation.js]]`
+- Content/copy: `#[[file:src/constants/content.js]]`
+- Site metadata: `#[[file:src/constants/site.js]]`
+- UI barrel: `#[[file:src/components/ui/index.js]]`
+- Common barrel: `#[[file:src/components/common/index.js]]`
+- Sections barrel: `#[[file:src/components/sections/index.js]]`
 
 ---
 
-_Always follow this guide. When in doubt, optimize for the next developer._
+_Always follow this guide. When in doubt, optimise for the next developer._

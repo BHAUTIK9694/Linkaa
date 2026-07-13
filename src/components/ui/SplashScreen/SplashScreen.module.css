@@ -1,0 +1,129 @@
+/* =============================================================================
+   SplashScreen — Brand intro animation
+   Premium, minimal entrance using scale + opacity, with a graceful lift-away
+   exit. Pure CSS animation, respects reduced motion.
+   ========================================================================== */
+
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-tooltip);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-black);
+  background-image: radial-gradient(
+    120% 90% at 50% 40%,
+    var(--color-grey-900) 0%,
+    var(--color-black) 70%
+  );
+  transition:
+    opacity 700ms var(--ease-expo),
+    transform 700ms var(--ease-expo),
+    visibility 0ms linear 700ms;
+  will-change: opacity, transform;
+}
+
+.splash.exiting {
+  opacity: 0;
+  transform: translate3d(0, -2%, 0) scale(1.04);
+  visibility: hidden;
+}
+
+/* --- Logo container --- */
+.logoWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  opacity: 0;
+  transform: scale(0.9);
+  animation: splashReveal 1100ms var(--ease-expo) 150ms forwards;
+}
+
+.logoIcon {
+  color: var(--color-ivory);
+  opacity: 0;
+  transform: translateY(14px);
+  animation: splashFadeUp 800ms var(--ease-expo) 250ms forwards;
+}
+
+.logoFull {
+  color: var(--color-ivory);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: splashFadeUp 800ms var(--ease-expo) 520ms forwards;
+}
+
+/* --- Tagline --- */
+.tagline {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-sm);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+  color: var(--color-grey-500);
+  opacity: 0;
+  transform: translateY(8px);
+  animation: splashFadeUp 800ms var(--ease-expo) 780ms forwards;
+}
+
+/* --- Loading progress line --- */
+.progress {
+  position: relative;
+  width: 120px;
+  height: 2px;
+  margin-top: var(--space-2);
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background-color: rgba(var(--rgb-white), 0.12);
+  opacity: 0;
+  animation: splashFadeUp 700ms var(--ease-expo) 950ms forwards;
+}
+
+.progressBar {
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  border-radius: inherit;
+  background-color: var(--color-ivory);
+  animation: splashProgress 1600ms var(--ease-standard) 1000ms infinite;
+}
+
+/* --- Keyframes --- */
+@keyframes splashReveal {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes splashFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes splashProgress {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Content mounts behind the splash so lazy chunks are ready on reveal. */
+.behind {
+  visibility: hidden;
+}
+
+/* Reduced motion: skip the splash entirely. */
+@media (prefers-reduced-motion: reduce) {
+  .splash {
+    display: none;
+  }
+}

@@ -30,6 +30,29 @@
   line-height: var(--line-height-relaxed);
 }
 
+.showroom {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-style: normal;
+  font-size: var(--font-size-sm);
+  color: var(--color-grey-400);
+}
+
+.showroomLabel {
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  font-size: var(--font-size-xs);
+  color: var(--color-gold-soft);
+  margin-bottom: var(--space-1);
+}
+
+.showroomHours {
+  margin-top: var(--space-1);
+  color: var(--color-grey-500);
+}
+
 .social {
   display: flex;
   gap: var(--space-3);

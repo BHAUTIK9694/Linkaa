@@ -1,13 +1,13 @@
-import { Container, Icon, Section } from '@components/ui';
+import { Container, Icon, Reveal, Section } from '@components/ui';
 import { ContactForm, PageHero } from '@components/sections';
 import { SITE } from '@constants/site';
 import { useDocumentTitle } from '@hooks';
 import styles from './Contact.module.css';
 
 const CONTACT_DETAILS = [
-  { id: 'email', icon: 'link', label: 'Email', value: SITE.email, href: `mailto:${SITE.email}` },
-  { id: 'phone', icon: 'plug', label: 'Phone', value: SITE.phone, href: `tel:${SITE.phone}` },
-  { id: 'office', icon: 'layers', label: 'Office', value: SITE.address },
+  { id: 'email', icon: 'mail', label: 'Email', value: SITE.email, href: `mailto:${SITE.email}` },
+  { id: 'phone', icon: 'phone', label: 'Phone', value: SITE.phone, href: `tel:${SITE.phone}` },
+  { id: 'office', icon: 'pin', label: 'Showroom', value: SITE.address },
 ];
 
 /**
@@ -19,19 +19,19 @@ function Contact() {
   return (
     <>
       <PageHero
-        eyebrow="Contact"
-        title="Let's talk"
-        subtitle="Questions about Linkaa? Our team usually responds within one business day."
+        eyebrow="Visit"
+        title="Start a conversation"
+        subtitle="Book a showroom visit at our Rajkot studio or tell us about your commission. We usually reply within one business day."
       />
 
       <Section>
         <Container>
           <div className={styles.layout}>
-            <div className={styles.details}>
+            <Reveal variant="left" className={styles.details}>
               <h2 className={styles.detailsTitle}>Get in touch</h2>
               <p className={styles.detailsText}>
-                Whether you&apos;re evaluating Linkaa or need a hand getting set up, we&apos;re here
-                to help.
+                Whether you&apos;re planning a bespoke commission or want to see our work in person,
+                we&apos;d love to hear from you.
               </p>
               <ul className={styles.list}>
                 {CONTACT_DETAILS.map((item) => (
@@ -52,11 +52,11 @@ function Contact() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </Reveal>
 
-            <div className={styles.formCol}>
+            <Reveal variant="right" delay={120} className={styles.formCol}>
               <ContactForm />
-            </div>
+            </Reveal>
           </div>
         </Container>
       </Section>

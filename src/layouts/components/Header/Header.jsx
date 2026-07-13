@@ -7,6 +7,9 @@ import { useDisclosure, useScrollPosition } from '@hooks';
 import { cn } from '@utils/classNames';
 import styles from './Header.module.css';
 
+/** Home-based links (root or an in-page hash) must match exactly, not as a prefix. */
+const isHomeLink = (to) => to === ROUTES.HOME || to.startsWith('/#');
+
 /**
  * Sticky site header with responsive navigation.
  * Collapses into a toggleable panel on small screens.
@@ -28,19 +31,20 @@ function Header() {
               <NavLink
                 key={link.id}
                 to={link.to}
+                end={isHomeLink(link.to)}
                 className={({ isActive }) => cn(styles.navLink, isActive && styles.active)}
               >
-                {link.label}
+                <span>{link.label}</span>
               </NavLink>
             ))}
           </nav>
 
           <div className={styles.actions}>
             <Button variant="ghost" size="sm" to={ROUTES.CONTACT}>
-              Sign in
+              Book a visit
             </Button>
-            <Button size="sm" to={ROUTES.PRICING}>
-              Get started
+            <Button size="sm" to={ROUTES.CONTACT}>
+              Get a quote
             </Button>
           </div>
 
@@ -57,13 +61,18 @@ function Header() {
         </div>
       </Container>
 
-      <div id="mobile-nav" className={cn(styles.mobileNav, isOpen && styles.mobileOpen)} hidden={!isOpen}>
+      <div
+        id="mobile-nav"
+        className={cn(styles.mobileNav, isOpen && styles.mobileOpen)}
+        hidden={!isOpen}
+      >
         <Container>
           <nav className={styles.mobileNavInner} aria-label="Mobile">
             {NAV_LINKS.map((link) => (
               <NavLink
                 key={link.id}
                 to={link.to}
+                end={isHomeLink(link.to)}
                 onClick={close}
                 className={({ isActive }) => cn(styles.mobileLink, isActive && styles.active)}
               >
@@ -72,10 +81,10 @@ function Header() {
             ))}
             <div className={styles.mobileActions}>
               <Button variant="outline" fullWidth to={ROUTES.CONTACT} onClick={close}>
-                Sign in
+                Book a visit
               </Button>
-              <Button fullWidth to={ROUTES.PRICING} onClick={close}>
-                Get started
+              <Button fullWidth to={ROUTES.CONTACT} onClick={close}>
+                Get a quote
               </Button>
             </div>
           </nav>

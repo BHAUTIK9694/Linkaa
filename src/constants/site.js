@@ -3,19 +3,24 @@
  * Single source of truth for company-wide copy, links, and contact info.
  */
 export const SITE = {
-  name: 'Linkaa',
-  tagline: 'Connect. Automate. Scale.',
+  name: 'Livantaa',
+  tagline: 'Furniture, crafted to endure.',
   description:
-    'Linkaa is the enterprise platform to connect, automate, and scale your business relationships.',
-  email: 'hello@linkaa.com',
-  phone: '+1 (555) 013-0100',
-  address: '100 Market Street, San Francisco, CA',
+    'Livantaa is a furniture atelier based in Rajkot, Gujarat — designing and building bespoke pieces in solid timber, honest joinery, and finishes made to last a lifetime.',
+  email: 'hello@livantaa.in',
+  phone: '+91 281 246 0100',
+  address: '12, Kalawad Road, Near Amin Marg, Rajkot 360005, Gujarat, India',
+  showroom: {
+    label: 'Flagship Showroom',
+    lines: ['12, Kalawad Road, Near Amin Marg', 'Rajkot 360005, Gujarat, India'],
+    hours: 'Mon–Sat · 10:00 AM – 7:00 PM',
+  },
   year: new Date().getFullYear(),
 };
 
 export const SOCIAL_LINKS = [
-  { id: 'twitter', label: 'Twitter', href: 'https://twitter.com' },
+  { id: 'instagram', label: 'Instagram', href: 'https://instagram.com' },
   { id: 'linkedin', label: 'LinkedIn', href: 'https://linkedin.com' },
-  { id: 'github', label: 'GitHub', href: 'https://github.com' },
   { id: 'youtube', label: 'YouTube', href: 'https://youtube.com' },
+  { id: 'twitter', label: 'X', href: 'https://twitter.com' },
 ];

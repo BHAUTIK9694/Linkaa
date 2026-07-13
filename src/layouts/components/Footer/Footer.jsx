@@ -18,6 +18,13 @@ function Footer() {
               <Logo height={30} />
             </Link>
             <p className={styles.blurb}>{SITE.description}</p>
+            <address className={styles.showroom}>
+              <span className={styles.showroomLabel}>{SITE.showroom.label}</span>
+              {SITE.showroom.lines.map((line) => (
+                <span key={line}>{line}</span>
+              ))}
+              <span className={styles.showroomHours}>{SITE.showroom.hours}</span>
+            </address>
             <ul className={styles.social}>
               {SOCIAL_LINKS.map((social) => (
                 <li key={social.id}>

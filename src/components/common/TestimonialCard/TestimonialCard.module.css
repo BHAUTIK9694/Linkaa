@@ -1,14 +1,20 @@
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
   height: 100%;
 }
 
+.mark {
+  color: var(--color-gold);
+  opacity: 0.5;
+}
+
 .stars {
   display: inline-flex;
   gap: 2px;
-  color: var(--color-accent);
+  color: var(--color-gold);
 }
 
 .stars svg {
@@ -17,8 +23,10 @@
 }
 
 .quote {
-  font-size: var(--font-size-lg);
-  line-height: var(--line-height-relaxed);
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-snug);
   color: var(--color-text-primary);
 }
 
@@ -27,6 +35,8 @@
   flex-direction: column;
   gap: 2px;
   margin-top: auto;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
 }
 
 .name {

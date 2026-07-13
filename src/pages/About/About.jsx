@@ -1,4 +1,4 @@
-import { Section } from '@components/ui';
+import { Reveal, Section } from '@components/ui';
 import { CTA, PageHero, StatsBand, Testimonials } from '@components/sections';
 import { useDocumentTitle } from '@hooks';
 import styles from './About.module.css';
@@ -12,37 +12,38 @@ function About() {
   return (
     <>
       <PageHero
-        eyebrow="About"
-        title="We're building the connective tissue for modern teams"
-        subtitle="Linkaa started with a simple belief: your tools should work for you, not the other way around."
+        eyebrow="Our story"
+        title="A workshop devoted to furniture that lasts"
+        subtitle="Livantaa began at a single bench in Rajkot in 1989 with one conviction: furniture should be built to be handed down, not thrown away."
       />
 
       <Section narrow>
         <div className={styles.prose}>
-          <p>
-            Teams waste countless hours moving data between disconnected tools. We set out to change
-            that by building a single platform where connections, automation, and insight live
-            together.
-          </p>
-          <p>
-            Today, thousands of teams across 90+ countries rely on Linkaa to remove busywork and
-            focus on the work that matters. We&apos;re a remote-first company obsessed with craft,
-            reliability, and the details that make software feel effortless.
-          </p>
-          <p>
-            Our values are simple: put customers first, default to transparency, and ship with care.
-            Everything we build follows from there.
-          </p>
+          <Reveal as="p" variant="up">
+            We start with solid, responsibly sourced timber — teak, sheesham, and mango wood — and
+            honest joinery: mortise and tenon, hand-cut dovetails, surfaces finished with natural
+            oils rubbed in by hand. No veneers over particleboard, no hidden fasteners, no
+            shortcuts.
+          </Reveal>
+          <Reveal as="p" variant="up" delay={100}>
+            Every piece is made to order by a single maker who signs their work when it is complete.
+            That maker sees your furniture from rough board to finished surface, so the person who
+            builds it is accountable for it.
+          </Reveal>
+          <Reveal as="p" variant="up" delay={200}>
+            Based in Rajkot, Gujarat, our values are simple: source responsibly, build honestly, and
+            stand behind every joint for life. Everything we make follows from there.
+          </Reveal>
         </div>
       </Section>
 
       <StatsBand />
       <Testimonials
-        eyebrow="Our customers"
-        title="Loved by teams everywhere"
-        subtitle="We measure success by the outcomes our customers achieve."
+        eyebrow="Client stories"
+        title="Lived with, and loved"
+        subtitle="We measure success in decades of daily use, not quarters."
       />
-      <CTA title="Join the teams building with Linkaa" />
+      <CTA title="Let’s make something built to last" />
     </>
   );
 }

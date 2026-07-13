@@ -4,17 +4,17 @@ import styles from './Logo.module.css';
 /**
  * Brand logo rendered as inline SVG using `currentColor`, so a single asset
  * adapts to any background (dark header, light footer). This is the ONLY
- * place the Linkaa mark is defined — never duplicate the SVG elsewhere.
+ * place the Livantaa mark is defined — never duplicate the SVG elsewhere.
  *
  * @param {object} props
  * @param {'full'|'icon'} [props.variant='full'] - wordmark + mark, or mark only
  * @param {number} [props.height=32] - rendered height in px (width auto-scales)
- * @param {string} [props.title='Linkaa'] - accessible label
+ * @param {string} [props.title='Livantaa'] - accessible label
  * @param {string} [props.className]
  */
-function Logo({ variant = 'full', height = 32, title = 'Linkaa', className }) {
+function Logo({ variant = 'full', height = 32, title = 'Livantaa', className }) {
   const isIcon = variant === 'icon';
-  const viewBox = isIcon ? '0 0 78 78' : '0 0 369.91 78.1';
+  const viewBox = isIcon ? '0 0 78 78' : '0 0 372 78.1';
 
   return (
     <svg
@@ -36,11 +36,22 @@ function Logo({ variant = 'full', height = 32, title = 'Linkaa', className }) {
           </g>
         </g>
       </g>
-      {/* Wordmark "Linkaa" — hidden in icon variant */}
+      {/* Wordmark "Livantaa" — hidden in icon variant */}
       {!isIcon && (
-        <g transform="matrix(2.9682818281496726,0,0,2.9682818281496726,91.4882102624409,0.5055680644419489)">
-          <path d="M12.72 20 l-11.2 0 l0 -14.4 l4.72 0 l0 11.04 l6.48 0 l0 3.36 z M18.74 20 l-4.16 0 l0 -10.48 l4.16 0 l0 10.48 z M14.58 8.18 l0 -2.96 l4.16 0 l0 2.96 l-4.16 0 z M23.84 20 l-3.64 -10.48 l4.16 0 l1.84 6.62 l1.82 -6.62 l4 0 l-3.54 10.48 l-4.64 0 z M44.9 20 l-4.3 0 l-0.2 -1.12 c-1.18 1.1 -2.38 1.42 -3.94 1.42 c-1.98 0 -3.74 -0.98 -3.74 -3.16 c0 -4.76 7.46 -2.6 7.46 -4.56 c0 -0.76 -0.92 -0.86 -1.36 -0.86 c-0.58 0 -1.36 0.12 -1.46 1.02 l-4 0 c0 -2.22 1.58 -3.52 5.72 -3.52 c4.96 0 5.26 1.84 5.26 4.34 l0 4.9 c0 0.6 0.02 0.9 0.56 1.34 l0 0.2 z M38.34 17.94 c1.46 0 1.94 -1.14 1.84 -2.58 c-1.36 0.66 -3.16 0.34 -3.16 1.7 c0 0.52 0.5 0.88 1.32 0.88 z M46.52 20 l0 -10.48 l3.8 0 l0 1.64 c0.94 -1.26 1.96 -1.94 3.54 -1.94 c2.76 0 4.06 1.62 4.06 4.5 l0 6.28 l-4.16 0 l0 -5.54 c0 -1.04 -0.28 -1.96 -1.46 -1.96 c-1.28 0 -1.62 0.82 -1.62 2.16 l0 5.34 l-4.16 0 z M66.78 17.02 l0 2.98 c-5.46 0.3 -6.12 -0.08 -6.12 -3.7 l0 -4.38 l-1.48 0 l0 -2.4 l1.54 0 l0 -3.26 l4.1 0 l0 3.26 l2 0 l0 2.4 l-2 0 l0 3.8 c0 0.96 0.14 1.3 1.3 1.3 l0.66 0 z M80.46 20 l-4.3 0 l-0.2 -1.12 c-1.18 1.1 -2.38 1.42 -3.94 1.42 c-1.98 0 -3.74 -0.98 -3.74 -3.16 c0 -4.76 7.46 -2.6 7.46 -4.56 c0 -0.76 -0.92 -0.86 -1.36 -0.86 c-0.58 0 -1.36 0.12 -1.46 1.02 l-4 0 c0 -2.22 1.58 -3.52 5.72 -3.52 c4.96 0 5.26 1.84 5.26 4.34 l0 4.9 c0 0.6 0.02 0.9 0.56 1.34 l0 0.2 z M73.9 17.94 c1.46 0 1.94 -1.14 1.84 -2.58 c-1.36 0.66 -3.16 0.34 -3.16 1.7 c0 0.52 0.5 0.88 1.32 0.88 z M93.8 20 l-4.3 0 l-0.2 -1.12 c-1.18 1.1 -2.38 1.42 -3.94 1.42 c-1.98 0 -3.74 -0.98 -3.74 -3.16 c0 -4.76 7.46 -2.6 7.46 -4.56 c0 -0.76 -0.92 -0.86 -1.36 -0.86 c-0.58 0 -1.36 0.12 -1.46 1.02 l-4 0 c0 -2.22 1.58 -3.52 5.72 -3.52 c4.96 0 5.26 1.84 5.26 4.34 l0 4.9 c0 0.6 0.02 0.9 0.56 1.34 l0 0.2 z M87.24 17.94 c1.46 0 1.94 -1.14 1.84 -2.58 c-1.36 0.66 -3.16 0.34 -3.16 1.7 c0 0.52 0.5 0.88 1.32 0.88 z" />
-        </g>
+        <text
+          x="95"
+          y="56"
+          textLength="270"
+          lengthAdjust="spacingAndGlyphs"
+          dominantBaseline="alphabetic"
+          style={{
+            fontFamily: 'var(--font-family-heading)',
+            fontWeight: 'var(--font-weight-semibold)',
+            fontSize: '58px',
+          }}
+        >
+          Livantaa
+        </text>
       )}
     </svg>
   );

@@ -16,14 +16,14 @@ function Features() {
   return (
     <>
       <PageHero
-        eyebrow="Features"
-        title="Built to connect and automate every workflow"
-        subtitle="Explore the capabilities that help modern teams do more with less."
+        eyebrow="Craftsmanship"
+        title="How we build furniture that outlives trends"
+        subtitle="Explore the materials, methods, and guarantees behind every Livantaa piece — handcrafted in Rajkot, Gujarat."
       />
       <FeaturesSection
-        eyebrow="Platform"
-        title="A complete toolkit"
-        subtitle="Each capability works independently and gets better together."
+        eyebrow="Our principles"
+        title="The difference is in the making"
+        subtitle="Each principle stands on its own — together they define our craft."
       />
       <HowItWorks />
       <StatsBand />

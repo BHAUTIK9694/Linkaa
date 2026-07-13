@@ -1,33 +1,211 @@
+/* =============================================================================
+   PageHero — premium interior-page hero
+   Layered, nature-inspired backdrop (radial washes + drifting leaves + a
+   ghosted leaf ornament) behind refined, staggered content. Strict monochrome.
+   ========================================================================== */
+
 .hero {
-  padding-block: clamp(3rem, 2rem + 5vw, 6rem);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: clamp(5rem, 3rem + 8vw, 9.5rem);
   background:
-    radial-gradient(70% 80% at 50% 0%, var(--color-bg-subtle) 0%, transparent 70%),
+    radial-gradient(90% 100% at 50% -20%, var(--color-bg-subtle) 0%, transparent 60%),
     var(--color-bg-base);
   border-bottom: 1px solid var(--color-border);
+}
+
+/* --- Decorative backdrop --------------------------------------------------- */
+.backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.leaves {
+  z-index: 0;
+}
+
+/* Soft monochrome washes that add depth to the corners. */
+.washTop,
+.washBottom {
+  position: absolute;
+  border-radius: var(--radius-circle);
+  filter: blur(40px);
+}
+
+.washTop {
+  top: -18%;
+  right: -8%;
+  width: 42%;
+  height: 70%;
+  background: radial-gradient(circle, rgba(var(--rgb-ink), 0.05), transparent 70%);
+}
+
+.washBottom {
+  bottom: -24%;
+  left: -10%;
+  width: 46%;
+  height: 80%;
+  background: radial-gradient(circle, rgba(var(--rgb-ink), 0.04), transparent 70%);
+}
+
+/* Oversized, faint leaf mark drifting gently in the upper-right. */
+.ornament {
+  position: absolute;
+  top: clamp(-3rem, -1rem - 4vw, -1rem);
+  right: clamp(-4rem, -2rem - 6vw, -1.5rem);
+  width: clamp(14rem, 10rem + 18vw, 26rem);
+  height: auto;
+  color: rgba(var(--rgb-ink), 0.04);
+  transform: rotate(18deg);
+  animation: pageHeroDrift 16s var(--ease-standard) infinite alternate;
+}
+
+/* --- Content --------------------------------------------------------------- */
+.container {
+  position: relative;
+  z-index: 1;
 }
 
 .inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-4);
+  gap: var(--space-5);
   text-align: center;
 }
 
+.inner.left {
+  align-items: flex-start;
+  text-align: start;
+}
+
 .eyebrow {
-  font-size: var(--font-size-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-xs);
+  font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);
-  letter-spacing: var(--letter-spacing-wide);
+  letter-spacing: var(--letter-spacing-wider);
   text-transform: uppercase;
-  color: var(--color-text-muted);
+  color: var(--color-text-primary);
+  opacity: 0;
+  animation: pageHeroUp 800ms var(--ease-expo) 80ms both;
+}
+
+.eyebrow svg {
+  color: var(--color-text-secondary);
 }
 
 .title {
+  max-width: 20ch;
+  font-family: var(--font-family-heading);
   font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.04;
+  letter-spacing: var(--letter-spacing-tight);
+  text-wrap: balance;
+  opacity: 0;
+  animation: pageHeroTitle 1000ms var(--ease-expo) 180ms both;
+}
+
+.inner.left .title {
+  max-width: 24ch;
 }
 
 .subtitle {
-  font-size: var(--font-size-xl);
-  color: var(--color-text-secondary);
   max-width: 58ch;
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+  opacity: 0;
+  animation: pageHeroUp 1000ms var(--ease-expo) 320ms both;
+}
+
+/* Thin rule that draws itself in beneath the copy. */
+.divider {
+  width: clamp(56px, 4vw, 84px);
+  height: 2px;
+  margin-top: var(--space-2);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-text-primary) 30%,
+    var(--color-text-primary) 70%,
+    transparent
+  );
+  transform-origin: center;
+  opacity: 0;
+  animation: pageHeroLine 900ms var(--ease-expo) 480ms both;
+}
+
+.inner.left .divider {
+  transform-origin: left;
+}
+
+/* --- Motion ---------------------------------------------------------------- */
+@keyframes pageHeroUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pageHeroTitle {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes pageHeroLine {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes pageHeroDrift {
+  from {
+    transform: rotate(14deg) translateY(0);
+  }
+  to {
+    transform: rotate(22deg) translateY(18px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eyebrow,
+  .title,
+  .subtitle,
+  .divider {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+  .ornament {
+    animation: none;
+  }
 }

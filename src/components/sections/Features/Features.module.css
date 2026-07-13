@@ -4,6 +4,15 @@
   gap: var(--space-6);
 }
 
+/* Reveal wrappers must stretch so cards fill equal-height rows */
+.grid > * {
+  display: flex;
+}
+
+.grid > * > * {
+  width: 100%;
+}
+
 @media (min-width: 640px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);

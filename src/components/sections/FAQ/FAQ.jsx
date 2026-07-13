@@ -1,4 +1,4 @@
-import { Section, SectionHeading } from '@components/ui';
+import { FloatingLeaves, Reveal, Section, SectionHeading } from '@components/ui';
 import { Accordion } from '@components/common';
 import { FAQS } from '@constants/content';
 
@@ -6,15 +6,18 @@ import { FAQS } from '@constants/content';
  * Frequently asked questions section.
  */
 function FAQ({
-  eyebrow = 'FAQ',
-  title = 'Frequently asked questions',
-  subtitle = 'Everything you need to know before getting started.',
+  eyebrow = 'Good to know',
+  title = 'Questions, answered',
+  subtitle = 'Everything you might want to know before commissioning a piece.',
   items = FAQS,
 }) {
   return (
-    <Section>
+    <Section tone="subtle">
+      <FloatingLeaves count={7} theme="light" />
       <SectionHeading eyebrow={eyebrow} title={title} subtitle={subtitle} />
-      <Accordion items={items} />
+      <Reveal variant="up">
+        <Accordion items={items} />
+      </Reveal>
     </Section>
   );
 }

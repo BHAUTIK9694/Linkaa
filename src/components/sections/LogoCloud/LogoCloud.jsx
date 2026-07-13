@@ -1,13 +1,12 @@
 import { Container } from '@components/ui';
+import { PARTNERS } from '@constants/content';
 import styles from './LogoCloud.module.css';
 
-const DEFAULT_BRANDS = ['Northwind', 'Lumen Labs', 'Vertex', 'Aperture', 'Monolith', 'Skyline'];
-
 /**
- * Social-proof strip of customer wordmarks. Uses styled text as a lightweight
- * stand-in for partner logos (swap in <img> assets when available).
+ * Social-proof strip of press / partner wordmarks. Uses styled text as a
+ * lightweight stand-in for logos (swap in <img> assets when available).
  */
-function LogoCloud({ label = 'Trusted by fast-growing teams worldwide', brands = DEFAULT_BRANDS }) {
+function LogoCloud({ label = 'As featured in', brands = PARTNERS }) {
   return (
     <div className={styles.wrapper}>
       <Container>

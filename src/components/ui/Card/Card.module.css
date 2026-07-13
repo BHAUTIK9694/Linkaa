@@ -1,8 +1,38 @@
 .card {
-  background-color: var(--color-bg-base);
-  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-xs);
+}
+
+/* --- Surface variants --- */
+.solid {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.glass {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+.glassDark {
+  background: var(--glass-bg-dark);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+  border: 1px solid var(--glass-border-dark);
+  box-shadow: var(--glass-shadow-dark);
+  color: var(--color-text-inverse);
+}
+
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .glass {
+    background: var(--glass-bg-strong);
+  }
+  .glassDark {
+    background: var(--glass-bg-dark-strong);
+  }
 }
 
 .pad-sm {
@@ -17,13 +47,18 @@
 
 .interactive {
   transition:
-    transform var(--transition-base) var(--ease-standard),
-    box-shadow var(--transition-base) var(--ease-standard),
-    border-color var(--transition-base) var(--ease-standard);
+    transform var(--transition-base) var(--ease-expo),
+    box-shadow var(--transition-base) var(--ease-expo),
+    border-color var(--transition-base) var(--ease-expo);
 }
 
 .interactive:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
   box-shadow: var(--shadow-lg);
   border-color: var(--color-border-strong);
+}
+
+.glass.interactive:hover,
+.glassDark.interactive:hover {
+  border-color: var(--glass-highlight);
 }

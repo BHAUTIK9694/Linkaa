@@ -2,7 +2,7 @@ import { Card, Icon } from '@components/ui';
 import styles from './TestimonialCard.module.css';
 
 /**
- * Customer quote card with author attribution.
+ * Client story card with a large opening quote mark and author attribution.
  *
  * @param {object} props
  * @param {string} props.quote
@@ -11,13 +11,14 @@ import styles from './TestimonialCard.module.css';
  */
 function TestimonialCard({ quote, author, role }) {
   return (
-    <Card as="figure" className={styles.card}>
+    <Card as="figure" padding="lg" className={styles.card}>
+      <Icon name="quote" size={32} className={styles.mark} />
       <div className={styles.stars} aria-label="Rated 5 out of 5">
         {Array.from({ length: 5 }).map((_, i) => (
-          <Icon key={i} name="star" size={16} />
+          <Icon key={i} name="star" size={15} />
         ))}
       </div>
-      <blockquote className={styles.quote}>“{quote}”</blockquote>
+      <blockquote className={styles.quote}>{quote}</blockquote>
       <figcaption className={styles.author}>
         <span className={styles.name}>{author}</span>
         <span className={styles.role}>{role}</span>

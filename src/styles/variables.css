@@ -1,162 +1,285 @@
 /* =============================================================================
-   Linkaa Design Tokens
+   Livantaa Design Tokens — Premium Furniture Atelier
    -----------------------------------------------------------------------------
-   Single source of truth for every design decision in the app.
-   NEVER hardcode a color, spacing, radius, shadow, or font value in a component.
-   Always reference one of the custom properties declared here.
+   THE single source of truth for every design decision in the app.
+   NEVER hardcode a color, spacing, radius, shadow, gradient, or duration in a
+   component. Always reference one of the custom properties declared here.
+
+   Palette: strict monochrome — black, white, and grey only. Clean, minimal,
+   and consistently applied across every component and section.
    ========================================================================== */
 
 :root {
   /* ---------------------------------------------------------------------------
-     COLOR PRIMITIVES (raw palette — do not use directly in components)
-     Brand: White (primary) / Black (accent) / Grey (secondary)
+     RGB TRIPLETS
+     Raw channels so components can compose any alpha via rgba(var(--rgb-x), a)
+     without ever writing a literal color value.
+     ------------------------------------------------------------------------ */
+  --rgb-white: 255, 255, 255;
+  --rgb-ink: 17, 17, 17;
+  --rgb-ivory: 255, 255, 255;
+  --rgb-espresso: 17, 17, 17;
+  --rgb-terracotta: 17, 17, 17;
+  --rgb-brass: 17, 17, 17;
+  --rgb-sage: 85, 85, 85;
+  --rgb-danger: 17, 17, 17;
+
+  /* ---------------------------------------------------------------------------
+     COLOR PRIMITIVES (raw palette — prefer semantic tokens in components)
      ------------------------------------------------------------------------ */
   --color-white: #ffffff;
-  --color-black: #0a0a0a;
+  --color-black: #111111;
   --color-true-black: #000000;
 
-  --color-grey-50: #f7f7f8;
-  --color-grey-100: #ededf0;
-  --color-grey-200: #dcdce1;
-  --color-grey-300: #c2c2ca;
-  --color-grey-400: #9a9aa5;
-  --color-grey-500: #71717a;
-  --color-grey-600: #52525b;
-  --color-grey-700: #3f3f46;
-  --color-grey-800: #27272a;
-  --color-grey-900: #18181b;
-  --color-grey-950: #101012;
+  /* Neutral grey scale */
+  --color-grey-50: #fafafa;
+  --color-grey-100: #f5f5f5;
+  --color-grey-200: #e5e5e5;
+  --color-grey-300: #d4d4d4;
+  --color-grey-400: #a3a3a3;
+  --color-grey-500: #737373;
+  --color-grey-600: #525252;
+  --color-grey-700: #404040;
+  --color-grey-800: #262626;
+  --color-grey-900: #171717;
+  --color-grey-950: #111111;
 
-  /* Feedback primitives */
-  --color-success: #16a34a;
-  --color-warning: #d97706;
-  --color-danger: #dc2626;
-  --color-info: #2563eb;
+  /* Mapped tones (kept for token compatibility — now pure monochrome) */
+  --color-ivory: #ffffff;
+  --color-cream: #f5f5f5;
+  --color-sand: #e5e5e5;
+  --color-espresso: #111111;
+
+  --color-terracotta: #111111;
+  --color-terracotta-dark: #000000;
+  --color-terracotta-soft: #404040;
+
+  --color-sage: #555555;
+  --color-sage-soft: #737373;
+
+  --color-brass: #111111;
+  --color-brass-soft: #525252;
+
+  /* Feedback primitives (monochrome) */
+  --color-success: #333333;
+  --color-warning: #555555;
+  --color-danger: #333333;
+  --color-info: #555555;
 
   /* ---------------------------------------------------------------------------
      SEMANTIC COLORS (use these in components)
      ------------------------------------------------------------------------ */
-  --color-primary: var(--color-white);
-  --color-primary-contrast: var(--color-black);
+  /* Brand primary / secondary / accent */
+  --color-primary: var(--color-black);
+  --color-primary-contrast: var(--color-white);
+
+  --color-secondary: var(--color-grey-600);
+  --color-secondary-hover: var(--color-grey-700);
+  --color-secondary-contrast: var(--color-white);
 
   --color-accent: var(--color-black);
-  --color-accent-hover: var(--color-grey-800);
+  --color-accent-hover: var(--color-true-black);
+  --color-accent-soft: var(--color-grey-600);
   --color-accent-contrast: var(--color-white);
 
-  --color-secondary: var(--color-grey-500);
-  --color-secondary-hover: var(--color-grey-600);
+  /* Gold — now mapped to grey for monochrome consistency */
+  --color-gold: var(--color-grey-600);
+  --color-gold-soft: var(--color-grey-400);
+
+  /* Neutral text tone */
+  --color-neutral: var(--color-grey-500);
 
   /* Text */
   --color-text-primary: var(--color-grey-950);
   --color-text-secondary: var(--color-grey-600);
-  --color-text-muted: var(--color-grey-400);
+  --color-text-muted: var(--color-grey-500);
   --color-text-inverse: var(--color-white);
   --color-text-link: var(--color-black);
 
-  /* Backgrounds */
+  /* Text on dark / photographic surfaces */
+  --color-text-on-dark: var(--color-white);
+  --color-text-on-dark-muted: rgba(var(--rgb-white), 0.82);
+  --color-text-on-dark-subtle: rgba(var(--rgb-white), 0.7);
+  --color-text-on-dark-faint: rgba(var(--rgb-white), 0.6);
+
+  /* Backgrounds & surfaces */
   --color-bg-base: var(--color-white);
   --color-bg-subtle: var(--color-grey-50);
   --color-bg-muted: var(--color-grey-100);
   --color-bg-inverse: var(--color-black);
   --color-bg-inverse-subtle: var(--color-grey-900);
-  --color-bg-overlay: rgba(10, 10, 10, 0.6);
+  --color-bg-overlay: rgba(var(--rgb-ink), 0.62);
+
+  --color-surface: var(--color-white);
+  --color-surface-subtle: var(--color-grey-50);
+  --color-surface-raised: var(--color-white);
+
+  /* On-dark surfaces (translucent white fills for buttons/chips on imagery) */
+  --surface-on-dark: rgba(var(--rgb-white), 0.06);
+  --surface-on-dark-hover: rgba(var(--rgb-white), 0.14);
+  --surface-on-dark-faint: rgba(var(--rgb-white), 0.04);
+  --surface-on-dark-faint-hover: rgba(var(--rgb-white), 0.12);
 
   /* Borders */
-  --color-border: var(--color-grey-200);
-  --color-border-strong: var(--color-grey-300);
-  --color-border-inverse: var(--color-grey-800);
+  --color-border: rgba(var(--rgb-ink), 0.1);
+  --color-border-strong: rgba(var(--rgb-ink), 0.2);
+  --color-border-inverse: rgba(var(--rgb-white), 0.14);
+  --color-border-on-dark: rgba(var(--rgb-white), 0.4);
   --color-border-focus: var(--color-black);
+
+  /* ---------------------------------------------------------------------------
+     GLASS / GLASSMORPHISM
+     ------------------------------------------------------------------------ */
+  --glass-bg: rgba(var(--rgb-white), 0.55);
+  --glass-bg-strong: rgba(var(--rgb-white), 0.78);
+  --glass-bg-dark: rgba(var(--rgb-ink), 0.42);
+  --glass-bg-dark-strong: rgba(var(--rgb-ink), 0.66);
+  --glass-border: rgba(var(--rgb-white), 0.5);
+  --glass-border-dark: rgba(var(--rgb-white), 0.16);
+  --glass-highlight: rgba(var(--rgb-white), 0.65);
+  --glass-blur: 18px;
+  --glass-blur-strong: 30px;
+  --glass-shadow: 0 8px 32px rgba(var(--rgb-ink), 0.18), inset 0 1px 0 rgba(var(--rgb-white), 0.4);
+  --glass-shadow-dark: 0 8px 32px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(var(--rgb-white), 0.08);
+
+  /* ---------------------------------------------------------------------------
+     GRADIENTS & SCRIMS
+     Reusable photographic overlays so components never inline color stops.
+     ------------------------------------------------------------------------ */
+  --scrim-hero:
+    linear-gradient(
+      180deg,
+      rgba(var(--rgb-ink), 0.55) 0%,
+      rgba(var(--rgb-ink), 0.2) 35%,
+      rgba(var(--rgb-ink), 0.85) 100%
+    ),
+    radial-gradient(120% 80% at 15% 20%, rgba(var(--rgb-ink), 0.35), transparent 60%);
+  --scrim-cta:
+    linear-gradient(180deg, rgba(var(--rgb-ink), 0.55), rgba(var(--rgb-ink), 0.8)),
+    radial-gradient(80% 120% at 50% 0%, rgba(var(--rgb-ink), 0.35), transparent 70%);
+  --scrim-media: linear-gradient(
+    180deg,
+    rgba(var(--rgb-ink), 0.05) 30%,
+    rgba(var(--rgb-ink), 0.78) 100%
+  );
+  --wash-accent: radial-gradient(120% 100% at 100% 0%, rgba(var(--rgb-ink), 0.04), transparent 55%);
+  --wash-brass: radial-gradient(120% 100% at 100% 0%, rgba(var(--rgb-ink), 0.04), transparent 55%);
+  --fade-line-down: linear-gradient(180deg, rgba(var(--rgb-white), 0.7), transparent);
+  --gradient-page-top: radial-gradient(
+    80% 90% at 50% -10%,
+    var(--color-bg-subtle) 0%,
+    transparent 65%
+  );
 
   /* ---------------------------------------------------------------------------
      TYPOGRAPHY
      ------------------------------------------------------------------------ */
   --font-family-base:
     'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --font-family-heading: var(--font-family-base);
+  --font-family-heading: 'Fraunces', 'Georgia', 'Times New Roman', serif;
   --font-family-mono: 'SFMono-Regular', 'JetBrains Mono', Consolas, 'Liberation Mono', monospace;
 
-  /* Font sizes — fluid, based on a 1.250 (major third) scale */
-  --font-size-xs: 0.75rem; /* 12px */
-  --font-size-sm: 0.875rem; /* 14px */
-  --font-size-md: 1rem; /* 16px (base) */
-  --font-size-lg: 1.125rem; /* 18px */
-  --font-size-xl: 1.25rem; /* 20px */
-  --font-size-2xl: 1.5rem; /* 24px */
-  --font-size-3xl: 1.875rem; /* 30px */
-  --font-size-4xl: clamp(2.25rem, 1.6rem + 2.6vw, 3rem); /* 36 -> 48px */
-  --font-size-5xl: clamp(2.75rem, 1.8rem + 4vw, 4rem); /* 44 -> 64px */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: clamp(2.25rem, 1.6rem + 2.6vw, 3.25rem);
+  --font-size-5xl: clamp(2.75rem, 1.7rem + 4.4vw, 4.5rem);
+  --font-size-6xl: clamp(3.25rem, 1.6rem + 7vw, 6.5rem);
 
-  /* Font weights */
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
-  /* Line heights */
-  --line-height-tight: 1.15;
-  --line-height-snug: 1.3;
+  --line-height-tight: 1.05;
+  --line-height-snug: 1.25;
   --line-height-normal: 1.5;
   --line-height-relaxed: 1.7;
 
-  /* Letter spacing */
+  --letter-spacing-tighter: -0.03em;
   --letter-spacing-tight: -0.02em;
   --letter-spacing-normal: 0;
-  --letter-spacing-wide: 0.04em;
+  --letter-spacing-wide: 0.08em;
+  --letter-spacing-wider: 0.18em;
 
   /* ---------------------------------------------------------------------------
      SPACING (4px base scale)
      ------------------------------------------------------------------------ */
   --space-0: 0;
-  --space-1: 0.25rem; /* 4px */
-  --space-2: 0.5rem; /* 8px */
-  --space-3: 0.75rem; /* 12px */
-  --space-4: 1rem; /* 16px */
-  --space-5: 1.25rem; /* 20px */
-  --space-6: 1.5rem; /* 24px */
-  --space-8: 2rem; /* 32px */
-  --space-10: 2.5rem; /* 40px */
-  --space-12: 3rem; /* 48px */
-  --space-16: 4rem; /* 64px */
-  --space-20: 5rem; /* 80px */
-  --space-24: 6rem; /* 96px */
-  --space-32: 8rem; /* 128px */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
 
-  /* Section rhythm */
-  --section-padding-y: clamp(3.5rem, 2rem + 6vw, 7rem);
-  --container-max-width: 1200px;
-  --container-max-width-narrow: 800px;
-  --container-padding-x: clamp(1rem, 0.5rem + 2.5vw, 2rem);
+  --section-padding-y: clamp(4.5rem, 2.5rem + 8vw, 9rem);
+  --container-max-width: 1240px;
+  --container-max-width-wide: 1440px;
+  --container-max-width-narrow: 820px;
+  --container-padding-x: clamp(1.25rem, 0.5rem + 3vw, 2.5rem);
 
   /* ---------------------------------------------------------------------------
      BORDER RADIUS
      ------------------------------------------------------------------------ */
   --radius-none: 0;
-  --radius-sm: 0.375rem; /* 6px */
-  --radius-md: 0.625rem; /* 10px */
-  --radius-lg: 1rem; /* 16px */
-  --radius-xl: 1.5rem; /* 24px */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
+  --radius-2xl: 2.5rem;
   --radius-pill: 999px;
   --radius-circle: 50%;
 
   /* ---------------------------------------------------------------------------
-     SHADOWS
+     SHADOWS (monochrome)
      ------------------------------------------------------------------------ */
-  --shadow-xs: 0 1px 2px rgba(10, 10, 10, 0.05);
-  --shadow-sm: 0 1px 3px rgba(10, 10, 10, 0.08), 0 1px 2px rgba(10, 10, 10, 0.04);
-  --shadow-md: 0 4px 12px rgba(10, 10, 10, 0.08), 0 2px 4px rgba(10, 10, 10, 0.04);
-  --shadow-lg: 0 12px 28px rgba(10, 10, 10, 0.12), 0 4px 8px rgba(10, 10, 10, 0.06);
-  --shadow-xl: 0 24px 48px rgba(10, 10, 10, 0.16);
-  --shadow-focus: 0 0 0 3px rgba(10, 10, 10, 0.15);
+  --shadow-xs: 0 1px 2px rgba(var(--rgb-ink), 0.06);
+  --shadow-sm: 0 1px 3px rgba(var(--rgb-ink), 0.1), 0 1px 2px rgba(var(--rgb-ink), 0.05);
+  --shadow-md: 0 6px 18px rgba(var(--rgb-ink), 0.1), 0 2px 6px rgba(var(--rgb-ink), 0.06);
+  --shadow-lg: 0 18px 40px rgba(var(--rgb-ink), 0.16), 0 6px 12px rgba(var(--rgb-ink), 0.08);
+  --shadow-xl: 0 32px 64px rgba(var(--rgb-ink), 0.22);
+  --shadow-glow: 0 0 60px rgba(var(--rgb-ink), 0.15);
+  --shadow-accent-glow: 0 24px 60px rgba(var(--rgb-ink), 0.12);
+  --shadow-focus: 0 0 0 3px rgba(var(--rgb-ink), 0.2);
+  --shadow-focus-danger: 0 0 0 3px rgba(var(--rgb-ink), 0.15);
 
   /* ---------------------------------------------------------------------------
-     TRANSITIONS & MOTION
+     TRANSITIONS, DURATIONS & MOTION
      ------------------------------------------------------------------------ */
-  --transition-fast: 120ms;
-  --transition-base: 200ms;
-  --transition-slow: 320ms;
+  --duration-fast: 160ms;
+  --duration-base: 280ms;
+  --duration-slow: 480ms;
+  --duration-slower: 800ms;
+
+  /* Legacy aliases (kept so existing rules resolve) */
+  --transition-fast: var(--duration-fast);
+  --transition-base: var(--duration-base);
+  --transition-slow: var(--duration-slow);
+  --transition-slower: var(--duration-slower);
+
   --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Scroll-reveal + text-load defaults */
+  --reveal-duration: 900ms;
+  --reveal-distance: 40px;
+  --text-reveal-duration: 850ms;
+  --text-reveal-stagger: 90ms;
 
   /* ---------------------------------------------------------------------------
      Z-INDEX SCALE
@@ -170,19 +293,25 @@
   --z-popover: 1500;
   --z-toast: 1600;
   --z-tooltip: 1700;
+  --z-cursor: 2000;
 
   /* ---------------------------------------------------------------------------
      LAYOUT PRIMITIVES
      ------------------------------------------------------------------------ */
-  --header-height: 72px;
+  --header-height: 76px;
   --focus-ring: var(--shadow-focus);
 }
 
 /* Respect users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   :root {
-    --transition-fast: 0ms;
-    --transition-base: 0ms;
-    --transition-slow: 0ms;
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+    --duration-slow: 0ms;
+    --duration-slower: 0ms;
+    --reveal-duration: 0ms;
+    --reveal-distance: 0px;
+    --text-reveal-duration: 0ms;
+    --text-reveal-stagger: 0ms;
   }
 }

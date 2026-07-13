@@ -1,6 +1,6 @@
-# Linkaa — Engineering Steering Guide
+# Livantaa — Engineering Steering Guide
 
-The single source of truth for how we build the Linkaa web application. Read this
+The single source of truth for how we build the Livantaa web application. Read this
 before contributing. It defines the architecture, conventions, and standards that
 keep the codebase clean, consistent, and scalable.
 
@@ -53,7 +53,7 @@ keep the codebase clean, consistent, and scalable.
 
 ## 2. Project Architecture
 
-Linkaa follows a **layered, feature-agnostic architecture** with a strict
+Livantaa follows a **layered, feature-agnostic architecture** with a strict
 dependency direction. Lower layers never import from higher layers.
 
 ```
@@ -84,7 +84,7 @@ This keeps each layer independently testable and swappable.
 ## 3. Folder Structure
 
 ```
-linkaa-react/
+livantaa-react/
 ├── public/                     # Static, served as-is (favicons)
 ├── src/
 │   ├── assets/                 # Imported assets (logos, images, icons)
@@ -397,7 +397,7 @@ Target: **WCAG 2.1 AA**. Baseline requirements for every contribution:
 
 ## 14. Asset Management
 
-- **Single source of brand assets.** The Linkaa mark is defined **once** as an
+- **Single source of brand assets.** The Livantaa mark is defined **once** as an
   inline SVG in `components/ui/Logo`. It uses `currentColor`, so it adapts to any
   background (dark header, light footer). **Never** paste the logo SVG anywhere
   else or add a second logo file for a color variant.

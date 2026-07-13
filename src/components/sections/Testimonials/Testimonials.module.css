@@ -4,6 +4,13 @@
   gap: var(--space-6);
 }
 
+.grid > * {
+  display: flex;
+}
+.grid > * > * {
+  width: 100%;
+}
+
 @media (min-width: 800px) {
   .grid {
     grid-template-columns: repeat(3, 1fr);

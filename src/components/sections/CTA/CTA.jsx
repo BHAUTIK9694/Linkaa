@@ -1,36 +1,48 @@
-import { Button, Container, Icon } from '@components/ui';
+import { Button, Container, Icon, Reveal } from '@components/ui';
 import { ROUTES } from '@constants/routes';
+import { ctaBg } from '@assets/images';
+import { cn } from '@utils/classNames';
 import styles from './CTA.module.css';
 
 /**
  * Full-width call-to-action band, typically placed before the footer.
  */
 function CTA({
-  title = 'Ready to scale your workflows?',
-  subtitle = 'Join thousands of teams building faster with Linkaa. Free to start.',
-  primaryCta = { label: 'Get started free', to: ROUTES.PRICING },
-  secondaryCta = { label: 'Talk to sales', to: ROUTES.CONTACT },
+  title = 'Let’s make something built to last',
+  subtitle = 'Book a design consultation at our Rajkot showroom, or start your commission online. Every piece begins with a conversation.',
+  primaryCta = { label: 'Start a commission', to: ROUTES.CONTACT },
+  secondaryCta = { label: 'Visit the showroom', to: ROUTES.CONTACT },
 }) {
   return (
     <section className={styles.cta}>
       <Container>
-        <div className={styles.inner}>
-          <h2 className={styles.title}>{title}</h2>
-          <p className={styles.subtitle}>{subtitle}</p>
-          <div className={styles.actions}>
-            <Button
-              size="lg"
-              variant="primary"
-              to={primaryCta.to}
-              iconRight={<Icon name="arrow-right" size={18} />}
-            >
-              {primaryCta.label}
-            </Button>
-            <Button size="lg" variant="outline" to={secondaryCta.to} className={styles.secondary}>
-              {secondaryCta.label}
-            </Button>
+        <Reveal variant="scale" className={cn(styles.inner, 'grain')}>
+          <div className={styles.bg} aria-hidden="true">
+            <img src={ctaBg} alt="" loading="lazy" />
+            <div className={styles.scrim} />
           </div>
-        </div>
+          <div className={styles.content}>
+            <span className={styles.eyebrow}>
+              <Icon name="leaf" size={15} />
+              Made to order
+            </span>
+            <h2 className={styles.title}>{title}</h2>
+            <p className={styles.subtitle}>{subtitle}</p>
+            <div className={styles.actions}>
+              <Button
+                size="lg"
+                variant="primary"
+                to={primaryCta.to}
+                iconRight={<Icon name="arrow-right" size={18} />}
+              >
+                {primaryCta.label}
+              </Button>
+              <Button size="lg" variant="outline" to={secondaryCta.to} className={styles.secondary}>
+                {secondaryCta.label}
+              </Button>
+            </div>
+          </div>
+        </Reveal>
       </Container>
     </section>
   );

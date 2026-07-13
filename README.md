@@ -1,10 +1,11 @@
-# Linkaa
+# Livantaa
 
-Enterprise-grade React web application for **Linkaa** — a platform to connect,
-automate, and scale business relationships. Built with a clean, component-based,
-scalable architecture and a fully tokenized design system.
+Premium React web application for **Livantaa** — a furniture atelier based in
+Rajkot, Gujarat, India, designing and building bespoke pieces in solid timber,
+honest joinery, and finishes made to last a lifetime. Built with a clean,
+component-based, scalable architecture and a fully tokenized design system.
 
-Brand palette: **White** (primary) · **Black** (accent) · **Grey** (secondary).
+Brand palette: **Black** (primary/accent) · **White** (backgrounds) · **Grey** (secondary/muted).
 
 ## Quick start
 
@@ -45,12 +46,13 @@ colors, spacing, radii, shadows, or type — reference a token.
 
 ## Documentation
 
-See **[STEERING.md](./STEERING.md)** for the full engineering guide: architecture,
-coding standards, CSS/token rules, accessibility, performance, state management,
-workflows, git conventions, and recommended libraries.
+See **[Engineering Steering Guide](./.kiro/steering/engineering.md)** for the full
+engineering guide: architecture, coding standards, CSS/token rules, colour palette
+restrictions, accessibility, performance, state management, workflows, git
+conventions, and recommended libraries.
 
 ## Brand assets
 
-The Linkaa logo is defined once as an inline SVG (`components/ui/Logo`) using
+The Livantaa logo is defined once as an inline SVG (`components/ui/Logo`) using
 `currentColor`, so a single source adapts to light and dark backgrounds. Favicons
 live in `public/`. Do not duplicate brand assets — see STEERING.md § Asset Management.

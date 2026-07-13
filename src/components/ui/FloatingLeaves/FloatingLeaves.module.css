@@ -1,0 +1,77 @@
+/* =============================================================================
+   FloatingLeaves — Nature-themed ambient decoration
+   The outer span handles the fall + horizontal drift; the inner SVG adds a
+   gentle rotating sway, so leaves tumble organically. Pure CSS, lightweight,
+   respects reduced motion.
+   ========================================================================== */
+
+.field {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  color: rgba(var(--rgb-ink), 0.85);
+}
+
+.dark {
+  color: rgba(var(--rgb-white), 0.85);
+}
+
+.leaf {
+  position: absolute;
+  top: -48px;
+  left: var(--l-left);
+  display: block;
+  opacity: var(--l-opacity);
+  animation: leafFall var(--l-duration) linear var(--l-delay) infinite;
+  will-change: transform, opacity;
+}
+
+.leaf svg {
+  display: block;
+  animation: leafSway calc(var(--l-duration) / 6) ease-in-out infinite;
+  transform-origin: 50% 0;
+}
+
+@keyframes leafFall {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  8% {
+    opacity: var(--l-opacity);
+  }
+  50% {
+    transform: translate3d(calc(var(--l-drift) * 0.5), 55vh, 0);
+  }
+  92% {
+    opacity: var(--l-opacity);
+  }
+  100% {
+    transform: translate3d(var(--l-drift), 112vh, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes leafSway {
+  0% {
+    transform: rotate(calc(var(--l-rotate) - var(--l-sway)));
+  }
+  50% {
+    transform: rotate(calc(var(--l-rotate) + var(--l-sway)));
+  }
+  100% {
+    transform: rotate(calc(var(--l-rotate) - var(--l-sway)));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .leaf,
+  .leaf svg {
+    animation: none;
+  }
+  .leaf {
+    opacity: 0;
+  }
+}

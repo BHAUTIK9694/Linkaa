@@ -1,0 +1,197 @@
+/* =============================================================================
+   CustomCursor — atelier viewfinder (corner brackets + precise dot + leaf mark)
+   -----------------------------------------------------------------------------
+   `mix-blend-mode: difference` keeps the monochrome cursor visible on both
+   light and dark surfaces (it inverts against whatever is behind it).
+   `pointer-events: none` guarantees it never blocks interaction.
+   ========================================================================== */
+
+.dot,
+.frame,
+.label {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-cursor);
+  pointer-events: none;
+  opacity: 0;
+  mix-blend-mode: difference;
+  will-change: transform;
+}
+
+/* --- Precise center dot: tracks the pointer instantly --- */
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: var(--radius-circle);
+  background-color: var(--color-white);
+  transition:
+    opacity var(--duration-base) var(--ease-out),
+    width var(--duration-fast) var(--ease-spring),
+    height var(--duration-fast) var(--ease-spring);
+}
+
+/* --- Viewfinder frame: the easing follower that trails the pointer --- */
+.frame {
+  display: grid;
+  place-items: center;
+  width: 0;
+  height: 0;
+}
+
+/* Square of four corner brackets. Grows/rotates through state changes. */
+.corners {
+  position: relative;
+  display: block;
+  width: 24px;
+  height: 24px;
+  transition:
+    width var(--duration-base) var(--ease-spring),
+    height var(--duration-base) var(--ease-spring),
+    transform var(--duration-base) var(--ease-spring),
+    opacity var(--duration-fast) var(--ease-out);
+}
+
+.corner {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border: 1.5px solid var(--color-white);
+  transition:
+    width var(--duration-base) var(--ease-spring),
+    height var(--duration-base) var(--ease-spring);
+}
+
+.corner[data-c='tl'] {
+  top: 0;
+  left: 0;
+  border-right: 0;
+  border-bottom: 0;
+}
+.corner[data-c='tr'] {
+  top: 0;
+  right: 0;
+  border-left: 0;
+  border-bottom: 0;
+}
+.corner[data-c='bl'] {
+  bottom: 0;
+  left: 0;
+  border-right: 0;
+  border-top: 0;
+}
+.corner[data-c='br'] {
+  bottom: 0;
+  right: 0;
+  border-left: 0;
+  border-top: 0;
+}
+
+/* --- Brand leaf mark: revealed at centre on media/hover --- */
+.leaf {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  color: var(--color-white);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.4) rotate(-12deg);
+  transition:
+    opacity var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-spring);
+}
+
+/* --- Contextual label (e.g. "View", "Explore") --- */
+.label {
+  display: grid;
+  place-items: center;
+  min-width: 54px;
+  padding: var(--space-1) var(--space-3);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-white);
+  white-space: nowrap;
+  transform-origin: center;
+  transition:
+    opacity var(--duration-fast) var(--ease-out),
+    scale var(--duration-fast) var(--ease-spring);
+  scale: 0.6;
+}
+
+/* --- Hover over interactive elements: brackets bloom + rotate a touch --- */
+.frame.hover .corners {
+  width: 46px;
+  height: 46px;
+  transform: rotate(45deg);
+}
+
+.frame.hover .corner {
+  width: 10px;
+  height: 10px;
+}
+
+/* --- Media (images / cards): brackets frame tighter, leaf mark blooms in --- */
+.frame.media .corners {
+  width: 54px;
+  height: 54px;
+  transform: rotate(0deg);
+}
+
+.frame.media .leaf {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1) rotate(0deg);
+}
+
+/* --- Labelled: corners recede so the word reads cleanly --- */
+.frame.labelled .corners {
+  width: 64px;
+  height: 64px;
+  opacity: 0.25;
+  transform: rotate(0deg);
+}
+
+.frame.labelled .leaf {
+  opacity: 0;
+}
+
+/* --- Press feedback: the whole frame contracts --- */
+.frame.press .corners {
+  width: 20px;
+  height: 20px;
+}
+
+/* --- Visibility, driven by the JS `active` body/element state --- */
+.active .dot {
+  opacity: 1;
+}
+
+.active .frame {
+  opacity: 1;
+}
+
+/* Dot recedes into the frame while hovering, shifting focus to the brackets. */
+.active .frame.hover ~ .dot,
+.active .frame.media ~ .dot {
+  width: 3px;
+  height: 3px;
+}
+
+.active .frame.labelled ~ .dot {
+  width: 3px;
+  height: 3px;
+}
+
+.label.show {
+  opacity: 1;
+  scale: 1;
+}
+
+/* Hide the native cursor while the custom one is active. */
+.hideNative,
+.hideNative * {
+  cursor: none !important;
+}

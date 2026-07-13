@@ -1,11 +1,12 @@
 import {
   CTA,
+  Collections,
   FAQ,
   Features,
   Hero,
   HowItWorks,
   LogoCloud,
-  PricingSection,
+  Showcase,
   StatsBand,
   Testimonials,
 } from '@components/sections';
@@ -21,11 +22,12 @@ function Home() {
     <>
       <Hero />
       <LogoCloud />
+      <Collections />
       <Features />
       <HowItWorks />
       <StatsBand />
+      <Showcase />
       <Testimonials />
-      <PricingSection />
       <FAQ />
       <CTA />
     </>
