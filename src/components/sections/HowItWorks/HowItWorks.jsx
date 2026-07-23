@@ -1,4 +1,4 @@
-import { FloatingLeaves, Reveal, Section, SectionHeading } from '@components/ui';
+import { Reveal, Section, SectionHeading } from '@components/ui';
 import { StepCard } from '@components/common';
 import { STEPS } from '@constants/content';
 import styles from './HowItWorks.module.css';
@@ -14,7 +14,6 @@ function HowItWorks({
 }) {
   return (
     <Section>
-      <FloatingLeaves count={5} theme="light" />
       <SectionHeading eyebrow={eyebrow} title={title} subtitle={subtitle} />
       <ol className={styles.grid}>
         {items.map((step, index) => (

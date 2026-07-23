@@ -20,3 +20,10 @@ export { default as collectionBedroom } from './collections/bedroom.jpg';
 export { default as projectVilla } from './projects/villa.jpg';
 export { default as projectPenthouse } from './projects/penthouse.jpg';
 export { default as projectFarmhouse } from './projects/farmhouse.jpg';
+
+// Featured Projects
+export { default as projectOrchardHouse } from './projects/orchard-house.jpg';
+export { default as projectAshmeadBarn } from './projects/ashmead-barn.jpg';
+export { default as projectKeepersCottage } from './projects/keepers-cottage.jpg';
+export { default as projectSeaBreeze } from './projects/sea-breeze.jpg';
+export { default as projectRustyHouse } from './projects/rusty-house.jpg';

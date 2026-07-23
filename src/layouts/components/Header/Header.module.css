@@ -1,10 +1,16 @@
+/* ============================================================
+   Header — Livantaa Premium
+   Refined, architectural. Two-tier on desktop: a hairline
+   utility strip above a clean nav bar with editorial feel.
+   ============================================================ */
+
 .header {
   position: sticky;
   top: 0;
   z-index: var(--z-header);
-  background-color: color-mix(in srgb, var(--color-bg-base) 72%, transparent);
-  -webkit-backdrop-filter: blur(16px) saturate(160%);
-  backdrop-filter: blur(16px) saturate(160%);
+  background-color: rgba(var(--rgb-white), 0.92);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
   border-bottom: 1px solid transparent;
   transition:
     background-color var(--transition-base) var(--ease-standard),
@@ -13,11 +19,55 @@
 }
 
 .scrolled {
-  background-color: color-mix(in srgb, var(--color-bg-base) 88%, transparent);
+  background-color: rgba(var(--rgb-white), 0.97);
   border-bottom-color: var(--color-border);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 1px 0 var(--color-border), 0 4px 24px rgba(var(--rgb-ink), 0.06);
 }
 
+/* ---- Utility strip (tagline + contact info) ---- */
+.utilityBar {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  height: 36px;
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.utilityTagline {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.utilityDot {
+  width: 4px;
+  height: 4px;
+  border-radius: var(--radius-circle);
+  background-color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.utilityContact {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.utilityLink {
+  color: var(--color-text-muted);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.utilityLink:hover {
+  color: var(--color-text-primary);
+}
+
+/* ---- Main bar ---- */
 .bar {
   display: flex;
   align-items: center;
@@ -26,63 +76,95 @@
   height: var(--header-height);
 }
 
+/* ---- Brand / logo ---- */
 .brand {
   display: inline-flex;
+  align-items: center;
   color: var(--color-text-primary);
+  flex-shrink: 0;
+  transition: opacity var(--duration-fast) var(--ease-standard);
 }
 
 .brand:hover {
-  opacity: 0.8;
+  opacity: 0.7;
 }
 
+/* ---- Desktop nav ---- */
 .desktopNav {
   display: none;
   align-items: center;
-  gap: var(--space-2);
+  gap: var(--space-1);
   margin-inline: auto;
 }
 
 .navLink {
   position: relative;
-  padding: var(--space-2) var(--space-1);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
-  color: var(--color-text-secondary);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  transition: color var(--duration-base) var(--ease-standard);
+  overflow: hidden;
+}
+
+/* Index number */
+.navIndex {
+  font-size: 0.6rem;
+  font-family: var(--font-family-mono);
+  color: var(--color-grey-400);
+  line-height: 1;
+  margin-top: 1px;
   transition: color var(--duration-base) var(--ease-standard);
 }
 
-/* Animated underline that grows from the center on hover / active */
-.navLink span::after {
+/* Sliding underline from left */
+.navLink::after {
   content: '';
   position: absolute;
-  left: 50%;
-  bottom: 0;
-  width: 0;
-  height: 1.5px;
-  background: var(--color-accent);
-  transform: translateX(-50%);
-  transition: width var(--duration-base) var(--ease-expo);
+  inset-inline: var(--space-3);
+  bottom: 4px;
+  height: 1px;
+  background: var(--color-text-primary);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--duration-base) var(--ease-expo);
 }
 
 .navLink:hover {
   color: var(--color-text-primary);
 }
 
-.navLink:hover span::after,
-.navLink.active span::after {
-  width: 100%;
+.navLink:hover .navIndex {
+  color: var(--color-text-primary);
+}
+
+.navLink:hover::after,
+.navLink.active::after {
+  transform: scaleX(1);
 }
 
 .navLink.active {
-  color: var(--color-accent);
+  color: var(--color-text-primary);
 }
 
+.navLink.active .navIndex {
+  color: var(--color-text-primary);
+}
+
+/* ---- Desktop action buttons ---- */
 .actions {
   display: none;
   align-items: center;
   gap: var(--space-2);
+  flex-shrink: 0;
 }
 
+/* ---- Mobile hamburger toggle ---- */
 .menuToggle {
   display: inline-flex;
   align-items: center;
@@ -90,56 +172,149 @@
   width: 44px;
   height: 44px;
   color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
+  transition:
+    background-color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard);
 }
 
 .menuToggle:hover {
   background-color: var(--color-bg-muted);
+  border-color: var(--color-border-strong);
 }
 
-/* --- Mobile nav panel --- */
+/* ---- Mobile nav drawer ---- */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-color: rgba(var(--rgb-ink), 0.4);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  animation: fadeIn var(--duration-fast) var(--ease-standard);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 .mobileNav {
+  display: none;
   border-top: 1px solid var(--color-border);
   background-color: var(--color-bg-base);
-  padding-block: var(--space-4);
+  overflow: hidden;
+}
+
+.mobileNav.mobileOpen {
+  display: block;
+  animation: drawerOpen var(--duration-base) var(--ease-expo);
+}
+
+@keyframes drawerOpen {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .mobileNavInner {
   display: flex;
   flex-direction: column;
-  gap: var(--space-1);
+  padding-block: var(--space-6) var(--space-8);
 }
 
 .mobileLink {
-  padding: var(--space-3) var(--space-2);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-text-secondary);
-  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) 0;
+  font-family: var(--font-family-heading);
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text-muted);
+  border-bottom: 1px solid var(--color-border);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.mobileLink:last-of-type {
+  border-bottom: none;
 }
 
 .mobileLink:hover,
 .mobileLink.active {
   color: var(--color-text-primary);
-  background-color: var(--color-bg-subtle);
+}
+
+.mobileLinkArrow {
+  font-size: var(--font-size-lg);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition:
+    opacity var(--duration-base) var(--ease-expo),
+    transform var(--duration-base) var(--ease-expo);
+}
+
+.mobileLink:hover .mobileLinkArrow,
+.mobileLink.active .mobileLinkArrow {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .mobileActions {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
-  margin-top: var(--space-4);
+  margin-top: var(--space-6);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
 }
 
-/* --- Responsive: show desktop nav from tablet up --- */
+.mobileContact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
+}
+
+.mobileContactLink {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.mobileContactLink:hover {
+  color: var(--color-text-primary);
+}
+
+/* ---- Responsive breakpoints ---- */
 @media (min-width: 900px) {
+  .utilityBar,
   .desktopNav,
   .actions {
     display: flex;
   }
 
-  .menuToggle,
-  .mobileNav {
+  .menuToggle {
+    display: none;
+  }
+
+  /* mobileNav stays hidden on desktop regardless of isOpen state */
+  .mobileNav,
+  .mobileNav.mobileOpen {
     display: none;
   }
 }

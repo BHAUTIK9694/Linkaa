@@ -12,7 +12,7 @@ import styles from './Hero.module.css';
  */
 function Hero({
   eyebrow = 'Handcrafted since 1989',
-  title = 'Furniture, crafted to endure.',
+  title = 'Bespoke solid wood furniture, handcrafted in Rajkot.',
   subtitle = 'Livantaa designs and builds bespoke pieces in solid timber — shaped by hand, finished with care, and made to be lived with for generations.',
   primaryCta = { label: 'Explore collections', to: ANCHORS.COLLECTIONS },
   secondaryCta = { label: 'Start a commission', to: ROUTES.CONTACT },
@@ -23,7 +23,12 @@ function Hero({
   return (
     <section className={cn(styles.hero, 'grain')}>
       <div className={styles.bg} aria-hidden="true">
-        <img className={styles.bgImg} src={heroBg} alt="" />
+        <img
+          className={styles.bgImg}
+          src={heroBg}
+          alt=""
+          fetchPriority="high"
+        />
         <div className={styles.overlay} />
       </div>
 
@@ -44,23 +49,6 @@ function Hero({
               {secondaryCta.label}
             </Button>
           </div>
-
-          <dl className={cn(styles.stats, 'glass-dark')}>
-            <div className={styles.stat}>
-              <dt className={styles.statValue}>35+</dt>
-              <dd className={styles.statLabel}>Years at the bench</dd>
-            </div>
-            <div className={styles.statDivider} aria-hidden="true" />
-            <div className={styles.stat}>
-              <dt className={styles.statValue}>100%</dt>
-              <dd className={styles.statLabel}>Certified timber</dd>
-            </div>
-            <div className={styles.statDivider} aria-hidden="true" />
-            <div className={styles.stat}>
-              <dt className={styles.statValue}>Lifetime</dt>
-              <dd className={styles.statLabel}>Craft guarantee</dd>
-            </div>
-          </dl>
         </div>
 
         <div ref={cardRef} className={cn(styles.floatCard, 'glass-dark')} aria-hidden="true">

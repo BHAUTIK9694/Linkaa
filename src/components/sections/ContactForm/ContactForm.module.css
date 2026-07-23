@@ -1,13 +1,100 @@
 .card {
   width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .form {
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
+  max-width: 100%;
 }
 
+/* Phone field group */
+.phoneGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.phoneLabel {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+.required {
+  color: var(--color-text-muted);
+}
+
+.phoneRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  max-width: 100%;
+}
+
+.countrySelect {
+  width: 130px;
+  min-width: 0;
+  flex-shrink: 0;
+  padding: var(--space-3) var(--space-3);
+  font-size: var(--font-size-md);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-base);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition:
+    border-color var(--transition-base) var(--ease-standard),
+    box-shadow var(--transition-base) var(--ease-standard);
+}
+
+.countrySelect:focus {
+  outline: none;
+  border-color: var(--color-border-focus);
+  box-shadow: var(--focus-ring);
+}
+
+.phoneInput {
+  flex: 1;
+  min-width: 0;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-md);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-base);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  transition:
+    border-color var(--transition-base) var(--ease-standard),
+    box-shadow var(--transition-base) var(--ease-standard);
+}
+
+.phoneInput::placeholder {
+  color: var(--color-text-muted);
+}
+
+.phoneInput:focus {
+  outline: none;
+  border-color: var(--color-border-focus);
+  box-shadow: var(--focus-ring);
+}
+
+.phoneInvalid {
+  border-color: var(--color-danger);
+}
+
+.phoneInvalid:focus {
+  box-shadow: var(--shadow-focus-danger);
+}
+
+.phoneError {
+  font-size: var(--font-size-sm);
+  color: var(--color-danger);
+}
+
+/* Status feedback */
 .status {
   min-height: 24px;
 }
@@ -20,4 +107,83 @@
 .error {
   color: var(--color-danger);
   font-size: var(--font-size-sm);
+}
+
+/* Interest dropdown */
+.interestSelect {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-md);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-base);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition:
+    border-color var(--transition-base) var(--ease-standard),
+    box-shadow var(--transition-base) var(--ease-standard);
+}
+
+.interestSelect:focus {
+  outline: none;
+  border-color: var(--color-border-focus);
+  box-shadow: var(--focus-ring);
+}
+
+/* Response time indicator */
+.responseTime {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+/* Enhanced success state */
+.successState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  text-align: center;
+  padding: var(--space-8) var(--space-4);
+}
+
+.successIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-circle);
+  background-color: var(--color-bg-muted);
+  color: var(--color-text-primary);
+}
+
+.successTitle {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.successText {
+  font-size: var(--font-size-md);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  max-width: 42ch;
+}
+
+@media (max-width: 639px) {
+  .phoneRow {
+    flex-wrap: nowrap;
+  }
+
+  .countrySelect {
+    width: 110px;
+  }
+
+  .phoneInput {
+    flex: 1;
+  }
 }

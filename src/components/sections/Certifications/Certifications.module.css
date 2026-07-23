@@ -1,0 +1,30 @@
+.band {
+  padding-block: var(--space-6);
+  border-block: 1px solid var(--color-border);
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-6);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  position: relative;
+}
+
+.item + .item::before {
+  content: '·';
+  position: absolute;
+  inset-inline-start: calc(-1 * var(--space-3) - 2px);
+  color: var(--color-grey-300);
+}

@@ -68,6 +68,14 @@
   font-weight: var(--font-weight-medium);
 }
 
+.attribution {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-gold-soft);
+}
+
 .meta {
   max-width: 42ch;
   font-size: var(--font-size-md);

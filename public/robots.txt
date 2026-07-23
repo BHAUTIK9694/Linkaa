@@ -1,0 +1,13 @@
+# Livantaa — robots.txt
+# https://livantaa.in/robots.txt
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /admin/*
+
+# Sitemap location
+Sitemap: https://livantaa.in/sitemap.xml
+
+# Crawl-delay (optional, respected by some bots)
+Crawl-delay: 1

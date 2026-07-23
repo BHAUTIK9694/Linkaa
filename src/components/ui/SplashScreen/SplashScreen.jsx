@@ -13,9 +13,9 @@ import styles from './SplashScreen.module.css';
  *
  * @param {object} props
  * @param {React.ReactNode} props.children - Main app content revealed after splash
- * @param {number} [props.duration=2200] - Hold time before the exit begins (ms)
+ * @param {number} [props.duration=800] - Hold time before the exit begins (ms)
  */
-function SplashScreen({ children, duration = 2200 }) {
+function SplashScreen({ children, duration = 800 }) {
   const [phase, setPhase] = useState('active'); // active | exiting | done
 
   useEffect(() => {
@@ -24,6 +24,14 @@ function SplashScreen({ children, duration = 2200 }) {
       setPhase('done');
       return undefined;
     }
+
+    // Skip splash for return visitors within this session.
+    if (window.sessionStorage.getItem('livantaa_splash_shown')) {
+      setPhase('done');
+      return undefined;
+    }
+
+    window.sessionStorage.setItem('livantaa_splash_shown', '1');
 
     const exitTimer = window.setTimeout(() => setPhase('exiting'), duration);
     const doneTimer = window.setTimeout(() => setPhase('done'), duration + 800);

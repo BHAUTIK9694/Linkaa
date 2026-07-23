@@ -1,4 +1,4 @@
-import { FloatingLeaves, Reveal, Section, SectionHeading } from '@components/ui';
+import { Reveal, Section, SectionHeading } from '@components/ui';
 import { FeatureCard } from '@components/common';
 import { FEATURES } from '@constants/content';
 import styles from './Features.module.css';
@@ -15,7 +15,6 @@ function Features({
 }) {
   return (
     <Section id="features" tone="subtle">
-      <FloatingLeaves count={9} theme="light" />
       <SectionHeading eyebrow={eyebrow} title={title} subtitle={subtitle} />
       <div className={styles.grid}>
         {items.map((feature, index) => (

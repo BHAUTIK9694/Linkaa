@@ -1,4 +1,4 @@
-import { Reveal, Section } from '@components/ui';
+import { Section } from '@components/ui';
 import { StatItem } from '@components/common';
 import { STATS } from '@constants/content';
 import styles from './StatsBand.module.css';
@@ -18,10 +18,15 @@ function StatsBand({
         <h2 className={styles.title}>{title}</h2>
       </div>
       <div className={styles.grid}>
-        {items.map((stat, index) => (
-          <Reveal key={stat.id} variant="up" delay={index * 90}>
-            <StatItem value={stat.value} label={stat.label} />
-          </Reveal>
+        {items.map((stat) => (
+          <StatItem
+            key={stat.id}
+            value={stat.value}
+            label={stat.label}
+            numericValue={stat.numericValue}
+            prefix={stat.prefix}
+            suffix={stat.suffix}
+          />
         ))}
       </div>
     </Section>

@@ -11,8 +11,6 @@ import styles from './CustomCursor.module.css';
  * - `frame`   — four corner brackets that ease behind the pointer with spring
  *               lag, bloom outward over interactive elements, rotate subtly,
  *               and contract on press.
- * - `leaf`    — the brand leaf mark, revealed at the centre while hovering
- *               interactive elements (a quiet, on-brand flourish).
  * - `label`   — an optional contextual word (e.g. "View", "Explore") revealed
  *               for elements that declare `data-cursor-text`.
  *
@@ -54,6 +52,8 @@ function CustomCursor({ ease = 0.18 }) {
     const labelPos = { ...target };
     let visible = false;
     let raf = 0;
+    let idleTimeout = 0;
+    let isIdle = false;
 
     const interactiveSelector =
       'a, button, input, textarea, select, label, summary, ' +
@@ -72,7 +72,9 @@ function CustomCursor({ ease = 0.18 }) {
       frame.style.transform = `translate3d(${framePos.x}px, ${framePos.y}px, 0) translate(-50%, -50%)`;
       label.style.transform = `translate3d(${labelPos.x}px, ${labelPos.y}px, 0) translate(-50%, -50%)`;
 
-      raf = window.requestAnimationFrame(render);
+      if (!isIdle) {
+        raf = window.requestAnimationFrame(render);
+      }
     };
 
     const handleMove = (event) => {
@@ -82,6 +84,16 @@ function CustomCursor({ ease = 0.18 }) {
         visible = true;
         document.body.classList.add(styles.active);
       }
+      // Resume RAF loop if idle
+      if (isIdle) {
+        isIdle = false;
+        raf = window.requestAnimationFrame(render);
+      }
+      // Reset idle timer
+      clearTimeout(idleTimeout);
+      idleTimeout = setTimeout(() => {
+        isIdle = true;
+      }, 2000);
     };
 
     const handleLeave = () => {
@@ -126,6 +138,7 @@ function CustomCursor({ ease = 0.18 }) {
 
     return () => {
       window.cancelAnimationFrame(raf);
+      clearTimeout(idleTimeout);
       window.removeEventListener('mousemove', handleMove);
       window.removeEventListener('mouseover', handleOver);
       window.removeEventListener('mousedown', handleDown);
@@ -147,10 +160,6 @@ function CustomCursor({ ease = 0.18 }) {
           <i className={styles.corner} data-c="bl" />
           <i className={styles.corner} data-c="br" />
         </span>
-        <svg className={styles.leaf} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z" />
-          <path d="M2 21c0-3 1.85-5.36 5.08-6" fill="none" stroke="currentColor" strokeWidth="1.6" />
-        </svg>
       </div>
       <div ref={dotRef} className={styles.dot} aria-hidden="true" />
       <span ref={labelRef} className={styles.label} aria-hidden="true" />

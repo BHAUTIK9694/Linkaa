@@ -1,20 +1,21 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import { ScrollProgress } from '@components/ui';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import styles from './MainLayout.module.css';
 
 /**
- * Primary application shell: skip link, sticky header, routed page content,
- * and global footer. Handles scroll behaviour on navigation — smooth-scrolling
- * to an in-page anchor when a hash is present, otherwise resetting to the top.
+ * Primary application shell: skip link, sticky header, scroll progress bar,
+ * routed page content, and global footer. Handles scroll behaviour on
+ * navigation — smooth-scrolling to an in-page anchor when a hash is present,
+ * otherwise resetting to the top.
  */
 function MainLayout() {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
     if (hash) {
-      // Wait a beat for the (possibly lazy) page to mount before scrolling.
       const id = window.setTimeout(() => {
         const el = document.getElementById(hash.slice(1));
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -28,6 +29,7 @@ function MainLayout() {
 
   return (
     <div className={styles.shell}>
+      <ScrollProgress />
       <a href="#main-content" className="skip-link">
         Skip to content
       </a>

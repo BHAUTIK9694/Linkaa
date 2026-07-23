@@ -1,13 +1,21 @@
 /** Barrel export for page sections. */
 export { default as CTA } from './CTA';
+export { default as Certifications } from './Certifications';
+export { default as ClientJourney } from './ClientJourney';
 export { default as Collections } from './Collections';
+export { default as Comparison } from './Comparison';
 export { default as ContactForm } from './ContactForm';
 export { default as FAQ } from './FAQ';
+export { default as FeaturedProjects } from './FeaturedProjects';
 export { default as Features } from './Features';
 export { default as Hero } from './Hero';
 export { default as HowItWorks } from './HowItWorks';
 export { default as LogoCloud } from './LogoCloud';
 export { default as PageHero } from './PageHero';
+export { default as PricingGuide } from './PricingGuide';
+export { default as ProcessGallery } from './ProcessGallery';
 export { default as Showcase } from './Showcase';
 export { default as StatsBand } from './StatsBand';
+export { default as Sustainability } from './Sustainability';
 export { default as Testimonials } from './Testimonials';
+export { default as Workshop } from './Workshop';

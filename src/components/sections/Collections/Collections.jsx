@@ -30,16 +30,25 @@ function Collections({
               as={Link}
               to={TILE_LINK}
               className={styles.tile}
-              data-cursor-text="View"
+              data-cursor-text="Enquire"
             >
               <div className={styles.media}>
-                <img src={item.image} alt={item.name} loading="lazy" />
+                <img
+                  src={item.image}
+                  alt={`Handcrafted ${item.name.toLowerCase()} from Livantaa's collection`}
+                  loading="lazy"
+                  width={600}
+                  height={400}
+                />
                 <div className={styles.scrim} aria-hidden="true" />
               </div>
               <div className={styles.body}>
                 <div>
                   <h3 className={styles.name}>{item.name}</h3>
                   <p className={styles.tagline}>{item.tagline}</p>
+                  {item.startingPrice && (
+                    <p className={styles.price}>{item.startingPrice}</p>
+                  )}
                 </div>
                 <span className={styles.arrow} aria-hidden="true">
                   <Icon name="arrow-up-right" size={20} />

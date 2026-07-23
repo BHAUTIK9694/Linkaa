@@ -1,0 +1,293 @@
+/* =============================================================================
+   FeaturedProjects — Immersive project showcase
+   Modern grid with dramatic hover reveals, glass overlays, and cinematic scale.
+   White background with dark text for a clean, airy feel.
+   ========================================================================== */
+
+.section {
+  position: relative;
+  padding-block: var(--section-padding-y);
+  background-color: var(--color-bg-base);
+  color: var(--color-text-primary);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.section :is(h2, h3) {
+  color: var(--color-text-primary);
+}
+
+.section p {
+  color: var(--color-text-secondary);
+}
+
+/* ---------------------------------------------------------------------------
+   Grid — asymmetric masonry-inspired layout
+   -------------------------------------------------------------------------- */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  margin-top: var(--space-12);
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: minmax(320px, auto);
+    gap: var(--space-6);
+  }
+
+  .cardWrap {
+    grid-column: span 6;
+  }
+
+  .cardWrap.heroCard {
+    grid-column: span 12;
+    grid-row: span 1;
+  }
+
+  .cardWrap:nth-child(4) {
+    grid-column: span 7;
+  }
+
+  .cardWrap:nth-child(5) {
+    grid-column: span 5;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Card — the project container
+   -------------------------------------------------------------------------- */
+.cardWrap {
+  display: flex;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  isolation: isolate;
+  box-shadow: var(--shadow-md);
+  transition: box-shadow var(--duration-base) var(--ease-standard);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-xl);
+}
+
+/* ---------------------------------------------------------------------------
+   Image layer
+   -------------------------------------------------------------------------- */
+.imageWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.heroCard .imageWrap {
+  aspect-ratio: 21 / 9;
+}
+
+@media (max-width: 639px) {
+  .heroCard .imageWrap {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition:
+    transform var(--duration-slower) var(--ease-expo),
+    filter var(--duration-slow) var(--ease-standard);
+}
+
+.card:hover .image {
+  transform: scale(1.08);
+  filter: brightness(0.7);
+}
+
+/* Permanent bottom scrim for readability */
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: var(--scrim-media);
+  pointer-events: none;
+  transition: opacity var(--duration-base) var(--ease-standard);
+}
+
+.card:hover .scrim {
+  opacity: 0.5;
+}
+
+/* ---------------------------------------------------------------------------
+   Content layer — always visible info
+   -------------------------------------------------------------------------- */
+.content {
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-end: 0;
+  padding: var(--space-6);
+  z-index: 2;
+  transition:
+    opacity var(--duration-base) var(--ease-standard),
+    transform var(--duration-base) var(--ease-standard);
+}
+
+.card:hover .content {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.index {
+  display: inline-block;
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-on-dark-faint);
+  letter-spacing: var(--letter-spacing-wide);
+  margin-bottom: var(--space-2);
+}
+
+.name {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-snug);
+  margin-bottom: var(--space-3);
+}
+
+.products {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.product {
+  font-size: var(--font-size-xs);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-text-on-dark-subtle);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--surface-on-dark);
+  border: 1px solid var(--color-border-inverse);
+  backdrop-filter: blur(6px);
+}
+
+/* ---------------------------------------------------------------------------
+   Overlay — revealed on hover with glassmorphism
+   -------------------------------------------------------------------------- */
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: var(--space-8);
+  z-index: 3;
+  background: var(--glass-bg-dark);
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border-dark);
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
+  pointer-events: none;
+}
+
+.card:hover .overlay {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.overlayName {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-snug);
+  margin-bottom: var(--space-4);
+}
+
+.overlayProducts {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-6) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.overlayProduct {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-on-dark-muted);
+}
+
+.overlayBtn {
+  color: var(--color-text-on-dark);
+  border-color: var(--color-border-on-dark);
+}
+
+.overlayBtn:hover {
+  background: var(--surface-on-dark-hover);
+}
+
+/* ---------------------------------------------------------------------------
+   CTA — bottom action
+   -------------------------------------------------------------------------- */
+.cta {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-12);
+}
+
+/* ---------------------------------------------------------------------------
+   Reduced motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .image {
+    transition: none;
+  }
+
+  .card:hover .image {
+    transform: none;
+  }
+
+  .overlay {
+    transition: opacity var(--duration-fast) linear;
+    transform: none;
+  }
+
+  .card:hover .overlay {
+    transform: none;
+  }
+
+  .content {
+    transition: opacity var(--duration-fast) linear;
+    transform: none;
+  }
+
+  .card:hover .content {
+    transform: none;
+  }
+}

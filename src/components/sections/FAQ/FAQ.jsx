@@ -1,9 +1,11 @@
-import { FloatingLeaves, Reveal, Section, SectionHeading } from '@components/ui';
+import { Button, Icon, Section, SectionHeading } from '@components/ui';
 import { Accordion } from '@components/common';
 import { FAQS } from '@constants/content';
+import { ROUTES } from '@constants/routes';
+import styles from './FAQ.module.css';
 
 /**
- * Frequently asked questions section.
+ * Frequently asked questions section with a contact CTA for unanswered questions.
  */
 function FAQ({
   eyebrow = 'Good to know',
@@ -13,11 +15,20 @@ function FAQ({
 }) {
   return (
     <Section tone="subtle">
-      <FloatingLeaves count={7} theme="light" />
       <SectionHeading eyebrow={eyebrow} title={title} subtitle={subtitle} />
-      <Reveal variant="up">
-        <Accordion items={items} />
-      </Reveal>
+      <Accordion items={items} />
+      <p className={styles.followUp}>
+        Still have questions?{' '}
+        <Button
+          variant="ghost"
+          size="sm"
+          to={ROUTES.CONTACT}
+          iconRight={<Icon name="arrow-right" size={14} />}
+          className={styles.followUpLink}
+        >
+          Get in touch
+        </Button>
+      </p>
     </Section>
   );
 }

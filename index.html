@@ -2,19 +2,173 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
+    <!-- Preconnect for performance (Google Maps embed, fonts) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://www.google.com" />
+    <link rel="preconnect" href="https://maps.googleapis.com" />
+    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+
+    <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate icon" type="image/png" sizes="256x256" href="/icon-256.png" />
     <link rel="apple-touch-icon" href="/icon-256.png" />
+
+    <!-- Viewport & mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#111111" />
+    <meta name="color-scheme" content="light" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Primary SEO (fallback — react-helmet-async overrides per page) -->
+    <title>Livantaa — Handcrafted Solid Wood Furniture in Rajkot, Gujarat</title>
     <meta
       name="description"
-      content="Livantaa — a furniture atelier in Rajkot, Gujarat, designing and building bespoke pieces in solid timber, honest joinery, and finishes made to last a lifetime."
+      content="Livantaa crafts bespoke solid wood furniture in Rajkot, Gujarat. Teak, sheesham & mango wood pieces built by hand with honest joinery and lifetime guarantee."
     />
-    <meta name="theme-color" content="#111111" />
-    <title>Livantaa — Furniture, crafted to endure.</title>
+    <meta
+      name="keywords"
+      content="Livantaa, Livanta, furniture Rajkot, custom furniture Gujarat, handcrafted furniture India, solid wood furniture, teak furniture, sheesham furniture, bespoke furniture, luxury furniture Rajkot"
+    />
+    <meta name="author" content="Livantaa" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <link rel="canonical" href="https://livantaa.in/" />
+    <link rel="alternate" hreflang="en-IN" href="https://livantaa.in/" />
+
+    <!-- Open Graph (fallback) -->
+    <meta property="og:title" content="Livantaa — Handcrafted Solid Wood Furniture in Rajkot, Gujarat" />
+    <meta property="og:description" content="Livantaa crafts bespoke solid wood furniture in Rajkot, Gujarat. Teak, sheesham & mango wood pieces built by hand with honest joinery and lifetime guarantee." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://livantaa.in/" />
+    <meta property="og:image" content="https://livantaa.in/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Livantaa — Furniture, crafted to endure." />
+    <meta property="og:site_name" content="Livantaa" />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- Twitter Card (fallback) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Livantaa — Handcrafted Solid Wood Furniture in Rajkot, Gujarat" />
+    <meta name="twitter:description" content="Livantaa crafts bespoke solid wood furniture in Rajkot, Gujarat. Teak, sheesham & mango wood pieces built by hand with honest joinery and lifetime guarantee." />
+    <meta name="twitter:image" content="https://livantaa.in/og-image.jpg" />
+    <meta name="twitter:image:alt" content="Livantaa — Furniture, crafted to endure." />
+
+    <!-- Geo/Local SEO -->
+    <meta name="geo.region" content="IN-GJ" />
+    <meta name="geo.placename" content="Rajkot" />
+    <meta name="geo.position" content="22.2969;70.7718" />
+    <meta name="ICBM" content="22.2969, 70.7718" />
+
+    <!-- JSON-LD: Organization (always present for crawlers that don't run JS) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FurnitureStore",
+        "@id": "https://livantaa.in/#organization",
+        "name": "Livantaa",
+        "alternateName": ["Livanta", "Livantaa Furniture", "Livantaa Rajkot"],
+        "description": "Livantaa is a furniture atelier based in Rajkot, Gujarat — designing and building bespoke pieces in solid timber, honest joinery, and finishes made to last a lifetime.",
+        "url": "https://livantaa.in",
+        "logo": "https://livantaa.in/icon-256.png",
+        "image": "https://livantaa.in/og-image.jpg",
+        "telephone": "+91 281 246 0100",
+        "email": "hello@livantaa.in",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "12, Kalawad Road, Near Amin Marg",
+          "addressLocality": "Rajkot",
+          "addressRegion": "Gujarat",
+          "postalCode": "360005",
+          "addressCountry": "IN"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 22.2969,
+          "longitude": 70.7718
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            "opens": "10:00",
+            "closes": "19:00"
+          }
+        ],
+        "priceRange": "₹₹₹",
+        "currenciesAccepted": "INR",
+        "paymentAccepted": "Cash, UPI, Bank Transfer",
+        "areaServed": [
+          { "@type": "City", "name": "Rajkot" },
+          { "@type": "State", "name": "Gujarat" },
+          { "@type": "Country", "name": "India" }
+        ],
+        "sameAs": [
+          "https://instagram.com/livantaa",
+          "https://linkedin.com/company/livantaa",
+          "https://youtube.com/@livantaa"
+        ],
+        "foundingDate": "1989",
+        "knowsAbout": [
+          "Custom furniture design",
+          "Solid wood furniture",
+          "Teak furniture",
+          "Sheesham furniture",
+          "Mango wood furniture",
+          "Hand-cut joinery",
+          "Bespoke furniture commissioning"
+        ]
+      }
+    </script>
+
+    <!-- JSON-LD: WebSite (for sitelinks) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Livantaa",
+        "alternateName": "Livanta",
+        "url": "https://livantaa.in"
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+    <!-- Fallback content for search engines that don't execute JavaScript -->
+    <noscript>
+      <style>
+        /* Ensure all reveal content is visible without JavaScript */
+        [data-reveal] {
+          opacity: 1 !important;
+          transform: none !important;
+          filter: none !important;
+        }
+      </style>
+      <h1>Livantaa — Handcrafted Solid Wood Furniture in Rajkot, Gujarat</h1>
+      <p>Livantaa is a furniture atelier based in Rajkot, Gujarat, India — designing and building bespoke pieces in solid timber, honest joinery, and finishes made to last a lifetime.</p>
+      <h2>Our Collections</h2>
+      <ul>
+        <li>Seating — Sofas, lounge and dining chairs</li>
+        <li>Tables — Dining, coffee and console tables</li>
+        <li>Storage — Sideboards, shelving and cabinets</li>
+        <li>Bedroom — Beds, nightstands and dressers</li>
+      </ul>
+      <h2>Why Choose Livantaa</h2>
+      <ul>
+        <li>Responsibly sourced timber — Teak, sheesham, and mango wood</li>
+        <li>Honest joinery — Mortise-and-tenon and hand-cut dovetails</li>
+        <li>Made to your measure — Every piece built to order</li>
+        <li>Natural hand finishes — Low-VOC oils and waxes</li>
+        <li>Doorstep delivery and installation across Gujarat and India</li>
+        <li>Lifetime guarantee on all joinery</li>
+      </ul>
+      <h2>Contact Us</h2>
+      <p>12, Kalawad Road, Near Amin Marg, Rajkot 360005, Gujarat, India</p>
+      <p>Phone: +91 281 246 0100</p>
+      <p>Email: hello@livantaa.in</p>
+      <p>Hours: Mon–Sat, 10:00 AM – 7:00 PM</p>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

@@ -6,10 +6,11 @@ import styles from './CTA.module.css';
 
 /**
  * Full-width call-to-action band, typically placed before the footer.
+ * Accepts props for per-page customisation of headline and CTAs.
  */
 function CTA({
-  title = 'Let’s make something built to last',
-  subtitle = 'Book a design consultation at our Rajkot showroom, or start your commission online. Every piece begins with a conversation.',
+  title = 'Let\u2019s make something built to last',
+  subtitle = 'Book a design consultation or start your commission online.',
   primaryCta = { label: 'Start a commission', to: ROUTES.CONTACT },
   secondaryCta = { label: 'Visit the showroom', to: ROUTES.CONTACT },
 }) {
@@ -41,6 +42,10 @@ function CTA({
                 {secondaryCta.label}
               </Button>
             </div>
+            <p className={styles.trust}>
+              <Icon name="award" size={14} />
+              Trusted by 18,000+ homeowners across Gujarat
+            </p>
           </div>
         </Reveal>
       </Container>

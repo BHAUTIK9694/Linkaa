@@ -187,8 +187,9 @@
   --font-size-2xl: 1.5rem;
   --font-size-3xl: 1.875rem;
   --font-size-4xl: clamp(2.25rem, 1.6rem + 2.6vw, 3.25rem);
-  --font-size-5xl: clamp(2.75rem, 1.7rem + 4.4vw, 4.5rem);
+  --font-size-5xl: clamp(2.25rem, 1.5rem + 4vw, 4.5rem);
   --font-size-6xl: clamp(3.25rem, 1.6rem + 7vw, 6.5rem);
+  --font-size-display: clamp(3rem, 1.4rem + 6.8vw, 6.5rem);
 
   --font-weight-regular: 400;
   --font-weight-medium: 500;
@@ -199,6 +200,7 @@
   --line-height-snug: 1.25;
   --line-height-normal: 1.5;
   --line-height-relaxed: 1.7;
+  --line-height-loose: 1.8;
 
   --letter-spacing-tighter: -0.03em;
   --letter-spacing-tight: -0.02em;
@@ -277,7 +279,7 @@
 
   /* Scroll-reveal + text-load defaults */
   --reveal-duration: 900ms;
-  --reveal-distance: 40px;
+  --reveal-distance: 20px;
   --text-reveal-duration: 850ms;
   --text-reveal-stagger: 90ms;
 

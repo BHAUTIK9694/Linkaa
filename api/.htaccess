@@ -1,0 +1,12 @@
+Options -Indexes
+
+# Route all requests through router.php (Apache mod_rewrite)
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ router.php [QSA,L]
+
+# Security: deny direct access to PHP source files except router.php
+<FilesMatch "^(?!router\.php$).*\.php$">
+    Require all denied
+</FilesMatch>

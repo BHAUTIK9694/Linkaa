@@ -1,0 +1,204 @@
+.shell {
+  display: flex;
+  min-height: 100vh;
+  background: var(--color-bg-subtle);
+}
+
+/* ── Sidebar ─────────────────────────────────────────────────────────── */
+.sidebar {
+  position: fixed;
+  inset-block: 0;
+  inset-inline-start: 0;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-inverse);
+  color: var(--color-text-inverse);
+  z-index: var(--z-sticky);
+  overflow-y: auto;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-6) var(--space-6) var(--space-4);
+  border-bottom: 1px solid var(--color-border-inverse);
+}
+
+.brandName {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text-inverse);
+}
+
+.brandSub {
+  font-size: var(--font-size-xs);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+  color: var(--color-text-on-dark-muted);
+  margin-top: var(--space-1);
+}
+
+.nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-4) var(--space-3);
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-on-dark-muted);
+  text-decoration: none;
+  transition: background var(--duration-fast) var(--ease-standard),
+              color var(--duration-fast) var(--ease-standard);
+}
+
+.navLink:hover {
+  background: var(--surface-on-dark-hover);
+  color: var(--color-text-inverse);
+}
+
+.navLink.active {
+  background: var(--surface-on-dark-hover);
+  color: var(--color-text-inverse);
+}
+
+.sidebarFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-4);
+  border-top: 1px solid var(--color-border-inverse);
+  margin-top: auto;
+}
+
+.adminInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.adminAvatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: var(--radius-circle);
+  background: var(--color-grey-700);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-inverse);
+}
+
+.adminMeta {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.adminName {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-inverse);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.adminEmail {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-on-dark-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.logoutBtn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--color-text-on-dark-muted);
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-standard),
+              color var(--duration-fast) var(--ease-standard);
+}
+
+.logoutBtn:hover {
+  background: var(--surface-on-dark-hover);
+  color: var(--color-text-inverse);
+}
+
+/* ── Main content area ────────────────────────────────────────────────── */
+.main {
+  margin-inline-start: 240px;
+  flex: 1;
+  min-width: 0;
+}
+
+.content {
+  padding: var(--space-8) var(--space-8);
+  max-width: 1200px;
+}
+
+/* ── Responsive: collapse sidebar on small screens ──────────────────── */
+@media (max-width: 800px) {
+  .sidebar {
+    width: 64px;
+  }
+
+  .brandSub,
+  .adminMeta,
+  .navLink span {
+    display: none;
+  }
+
+  .brand {
+    align-items: center;
+  }
+
+  .brandName {
+    font-size: var(--font-size-lg);
+  }
+
+  .navLink {
+    justify-content: center;
+    padding: var(--space-3);
+  }
+
+  .sidebarFooter {
+    flex-direction: column;
+    padding: var(--space-3) var(--space-2);
+  }
+
+  .adminInfo {
+    justify-content: center;
+  }
+
+  .main {
+    margin-inline-start: 64px;
+  }
+
+  .content {
+    padding: var(--space-5) var(--space-4);
+  }
+}

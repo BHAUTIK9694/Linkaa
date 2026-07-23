@@ -1,4 +1,4 @@
-import { Reveal, Section, SectionHeading } from '@components/ui';
+import { Section, SectionHeading } from '@components/ui';
 import { TestimonialCard } from '@components/common';
 import { TESTIMONIALS } from '@constants/content';
 import styles from './Testimonials.module.css';
@@ -16,10 +16,8 @@ function Testimonials({
     <Section tone="subtle">
       <SectionHeading eyebrow={eyebrow} title={title} subtitle={subtitle} />
       <div className={styles.grid}>
-        {items.map((testimonial, index) => (
-          <Reveal key={testimonial.id} variant="up" delay={index * 110}>
-            <TestimonialCard {...testimonial} />
-          </Reveal>
+        {items.map((testimonial) => (
+          <TestimonialCard key={testimonial.id} {...testimonial} />
         ))}
       </div>
     </Section>

@@ -1,87 +1,103 @@
+/* ============================================================
+   Footer — Livantaa Premium
+   Dark architectural footer with LIVANTAA watermark spanning
+   the full background. Includes: quick links, contact info,
+   working hours, WhatsApp CTA, embedded map, and legal bar.
+   ============================================================ */
+
 .footer {
+  position: relative;
   background-color: var(--color-bg-inverse);
-  color: var(--color-grey-300);
-  padding-block: var(--space-20) var(--space-8);
+  color: var(--color-grey-400);
+  overflow: hidden;
 }
 
+/* Giant watermark wordmark spanning the entire footer background */
+.footer::before {
+  content: 'LIVANTAA';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-family-heading);
+  font-size: clamp(8rem, 22vw, 26rem);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-tight);
+  line-height: 1;
+  color: rgba(var(--rgb-white), 0.02);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+/* All content sits above watermark */
+.inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- Main grid: info + map ---- */
 .top {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-12);
-  padding-bottom: var(--space-12);
+  padding-block: var(--space-16) var(--space-12);
   border-bottom: 1px solid var(--color-border-inverse);
+}
+
+/* ---- Left info side ---- */
+.infoSide {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+}
+
+/* Brand + nav row */
+.brandNav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+/* ---- Brand column ---- */
+.brandCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
 }
 
 .brand {
   display: inline-flex;
   color: var(--color-white);
+  transition: opacity var(--duration-fast) var(--ease-standard);
 }
 
-.brandCol {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
-  max-width: 340px;
+.brand:hover {
+  opacity: 0.75;
 }
 
 .blurb {
-  color: var(--color-grey-400);
   font-size: var(--font-size-sm);
   line-height: var(--line-height-relaxed);
-}
-
-.showroom {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  font-style: normal;
-  font-size: var(--font-size-sm);
-  color: var(--color-grey-400);
-}
-
-.showroomLabel {
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: var(--letter-spacing-wide);
-  text-transform: uppercase;
-  font-size: var(--font-size-xs);
-  color: var(--color-gold-soft);
-  margin-bottom: var(--space-1);
-}
-
-.showroomHours {
-  margin-top: var(--space-1);
   color: var(--color-grey-500);
+  max-width: 32ch;
 }
 
-.social {
+/* ---- Section titles ---- */
+.sectionTitle {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+  color: var(--color-grey-200);
+  margin-bottom: var(--space-4);
+}
+
+/* ---- Navigation ---- */
+.nav {
   display: flex;
-  gap: var(--space-3);
-}
-
-.socialLink {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  color: var(--color-grey-300);
-  border: 1px solid var(--color-border-inverse);
-  border-radius: var(--radius-circle);
-  transition:
-    color var(--transition-base) var(--ease-standard),
-    border-color var(--transition-base) var(--ease-standard),
-    background-color var(--transition-base) var(--ease-standard);
-}
-
-.socialLink:hover {
-  color: var(--color-black);
-  background-color: var(--color-white);
-  border-color: var(--color-white);
-}
-
-.navGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  flex-wrap: wrap;
   gap: var(--space-8);
 }
 
@@ -91,58 +107,238 @@
   gap: var(--space-4);
 }
 
+.navGroup + .navGroup {
+  margin-top: 0;
+}
+
 .navTitle {
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);
-  letter-spacing: var(--letter-spacing-wide);
+  letter-spacing: var(--letter-spacing-wider);
   text-transform: uppercase;
-  color: var(--color-white);
+  color: var(--color-grey-200);
 }
 
 .navList {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-6);
 }
 
-.navLink {
+.navLinkItem {
   font-size: var(--font-size-sm);
-  color: var(--color-grey-400);
-  transition: color var(--transition-base) var(--ease-standard);
+  color: var(--color-grey-500);
+  transition: color var(--duration-base) var(--ease-standard);
 }
 
-.navLink:hover {
+.navLinkItem:hover {
   color: var(--color-white);
 }
 
-.bottom {
+/* ---- Contact + Hours row ---- */
+.contactHours {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+}
+
+/* Contact block */
+.contactBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.contactList {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
-  padding-top: var(--space-8);
 }
 
-.copy,
-.contact {
+.contactItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
   font-size: var(--font-size-sm);
-  color: var(--color-grey-400);
+  color: var(--color-grey-500);
 }
 
-@media (min-width: 700px) {
-  .navGrid {
-    grid-template-columns: repeat(3, 1fr);
+.contactItem svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.contactLink {
+  color: var(--color-grey-500);
+  transition: color var(--duration-base) var(--ease-standard);
+}
+
+.contactLink:hover {
+  color: var(--color-white);
+}
+
+/* Hours block */
+.hoursBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.hoursList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.hoursItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-size: var(--font-size-sm);
+}
+
+.hoursDay {
+  color: var(--color-grey-300);
+  min-width: 8ch;
+  font-weight: var(--font-weight-medium);
+}
+
+.hoursTime {
+  color: var(--color-grey-500);
+}
+
+/* ---- WhatsApp CTA ---- */
+.whatsappCta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-6);
+  border: 1px solid var(--color-border-inverse);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-grey-300);
+  background-color: transparent;
+  transition:
+    color var(--duration-base) var(--ease-standard),
+    background-color var(--duration-base) var(--ease-standard),
+    border-color var(--duration-base) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+  width: fit-content;
+}
+
+.whatsappCta:hover {
+  color: var(--color-black);
+  background-color: var(--color-white);
+  border-color: var(--color-white);
+  transform: translateY(-1px);
+}
+
+/* ---- Social icons ---- */
+.social {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--color-grey-500);
+  border: 1px solid var(--color-border-inverse);
+  border-radius: var(--radius-sm);
+  transition:
+    color var(--duration-base) var(--ease-standard),
+    background-color var(--duration-base) var(--ease-standard),
+    border-color var(--duration-base) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+}
+
+.socialLink:hover {
+  color: var(--color-black);
+  background-color: var(--color-white);
+  border-color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+/* ---- Newsletter side ---- */
+.newsletterSide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ---- Bottom legal bar ---- */
+.bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding-block: var(--space-6);
+}
+
+.copy {
+  font-size: var(--font-size-xs);
+  letter-spacing: var(--letter-spacing-wide);
+  color: var(--color-grey-600);
+}
+
+.poweredBy {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-border-inverse);
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  transition:
+    border-color var(--duration-base) var(--ease-standard),
+    background-color var(--duration-base) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+}
+
+.poweredBy:hover {
+  border-color: rgba(var(--rgb-white), 0.3);
+  background-color: rgba(var(--rgb-white), 0.04);
+  transform: translateY(-1px);
+}
+
+.poweredLabel {
+  font-size: var(--font-size-xs);
+  letter-spacing: var(--letter-spacing-wide);
+  color: var(--color-grey-600);
+}
+
+.synovixaName {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+  color: var(--color-grey-300);
+  transition: color var(--duration-base) var(--ease-standard);
+}
+
+.poweredBy:hover .synovixaName {
+  color: var(--color-white);
+}
+
+/* ---- Responsive ---- */
+@media (min-width: 640px) {
+  .contactHours {
+    grid-template-columns: 1fr 1fr;
   }
 
-  .bottom {
+  .brandNav {
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
   }
 }
 
-@media (min-width: 960px) {
+@media (min-width: 900px) {
   .top {
-    grid-template-columns: 1.4fr 2fr;
+    grid-template-columns: 1.4fr 1fr;
     gap: var(--space-16);
+    padding-block: var(--space-20) var(--space-16);
   }
 }

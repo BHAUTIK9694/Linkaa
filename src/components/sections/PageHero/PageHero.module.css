@@ -1,17 +1,19 @@
 /* =============================================================================
    PageHero — premium interior-page hero
-   Layered, nature-inspired backdrop (radial washes + drifting leaves + a
-   ghosted leaf ornament) behind refined, staggered content. Strict monochrome.
+   Deeply layered, strictly-monochrome backdrop: a mesh gradient wash, a
+   low-opacity grid, blurred gradient orbs, drifting leaves, and animated
+   geometric shapes that react subtly to the pointer (--px / --py). Content
+   enters with staggered, blur-in motion. Three personalities via variant.
    ========================================================================== */
 
 .hero {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding-block: clamp(5rem, 3rem + 8vw, 9.5rem);
+  padding-block: clamp(5.5rem, 3rem + 9vw, 11rem);
   background:
-    radial-gradient(90% 100% at 50% -20%, var(--color-bg-subtle) 0%, transparent 60%),
-    var(--color-bg-base);
+    radial-gradient(120% 120% at 50% -20%, var(--color-bg-subtle) 0%, transparent 55%),
+    linear-gradient(180deg, var(--color-bg-base) 0%, var(--color-bg-subtle) 100%);
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -21,34 +23,65 @@
   inset: 0;
   z-index: -1;
   pointer-events: none;
+  opacity: 0;
+  animation: backdropIn 1200ms var(--ease-out) 100ms forwards;
 }
 
 .leaves {
   z-index: 0;
 }
 
-/* Soft monochrome washes that add depth to the corners. */
-.washTop,
-.washBottom {
+/* Soft mesh of monochrome radial washes for depth. */
+.mesh {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(38% 48% at 18% 22%, rgba(var(--rgb-ink), 0.06), transparent 70%),
+    radial-gradient(42% 52% at 84% 16%, rgba(var(--rgb-ink), 0.05), transparent 70%),
+    radial-gradient(58% 62% at 50% 112%, rgba(var(--rgb-ink), 0.07), transparent 70%);
+}
+
+/* Low-opacity technical grid, faded out toward the edges with a radial mask. */
+.grid {
+  position: absolute;
+  inset: -12%;
+  background-image:
+    linear-gradient(to right, rgba(var(--rgb-ink), 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(var(--rgb-ink), 0.05) 1px, transparent 1px);
+  background-size: 46px 46px;
+  -webkit-mask-image: radial-gradient(ellipse 65% 65% at 50% 42%, #000 0%, transparent 78%);
+  mask-image: radial-gradient(ellipse 65% 65% at 50% 42%, #000 0%, transparent 78%);
+  translate: calc(var(--px, 0) * -8px) calc(var(--py, 0) * -8px);
+  transition: translate 500ms var(--ease-out);
+}
+
+/* Blurred gradient orbs — drift slowly and shift with the pointer. */
+.orb {
   position: absolute;
   border-radius: var(--radius-circle);
-  filter: blur(40px);
+  filter: blur(52px);
+  translate: calc(var(--px, 0) * var(--depth, 20px)) calc(var(--py, 0) * var(--depth, 20px));
+  transition: translate 600ms var(--ease-out);
 }
 
-.washTop {
-  top: -18%;
-  right: -8%;
-  width: 42%;
-  height: 70%;
+.orbA {
+  --depth: 26px;
+  top: -14%;
+  right: -6%;
+  width: 40%;
+  height: 62%;
+  background: radial-gradient(circle, rgba(var(--rgb-ink), 0.07), transparent 68%);
+  animation: heroOrb 22s var(--ease-standard) infinite alternate;
+}
+
+.orbB {
+  --depth: -18px;
+  bottom: -20%;
+  left: -8%;
+  width: 44%;
+  height: 72%;
   background: radial-gradient(circle, rgba(var(--rgb-ink), 0.05), transparent 70%);
-}
-
-.washBottom {
-  bottom: -24%;
-  left: -10%;
-  width: 46%;
-  height: 80%;
-  background: radial-gradient(circle, rgba(var(--rgb-ink), 0.04), transparent 70%);
+  animation: heroOrb 28s var(--ease-standard) -8s infinite alternate;
 }
 
 /* Oversized, faint leaf mark drifting gently in the upper-right. */
@@ -60,6 +93,8 @@
   height: auto;
   color: rgba(var(--rgb-ink), 0.04);
   transform: rotate(18deg);
+  translate: calc(var(--px, 0) * 14px) calc(var(--py, 0) * 14px);
+  transition: translate 600ms var(--ease-out);
   animation: pageHeroDrift 16s var(--ease-standard) infinite alternate;
 }
 
@@ -89,7 +124,9 @@
   padding: var(--space-2) var(--space-4);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-pill);
-  background: var(--color-surface);
+  background: var(--glass-bg-strong);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
   box-shadow: var(--shadow-xs);
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);
@@ -97,7 +134,7 @@
   text-transform: uppercase;
   color: var(--color-text-primary);
   opacity: 0;
-  animation: pageHeroUp 800ms var(--ease-expo) 80ms both;
+  animation: pageHeroUp 800ms var(--ease-expo) 240ms both;
 }
 
 .eyebrow svg {
@@ -107,13 +144,13 @@
 .title {
   max-width: 20ch;
   font-family: var(--font-family-heading);
-  font-size: var(--font-size-5xl);
+  font-size: var(--font-size-6xl);
   font-weight: var(--font-weight-medium);
-  line-height: 1.04;
+  line-height: 1.02;
   letter-spacing: var(--letter-spacing-tight);
   text-wrap: balance;
   opacity: 0;
-  animation: pageHeroTitle 1000ms var(--ease-expo) 180ms both;
+  animation: pageHeroTitle 1100ms var(--ease-expo) 340ms both;
 }
 
 .inner.left .title {
@@ -121,12 +158,26 @@
 }
 
 .subtitle {
-  max-width: 58ch;
+  max-width: 60ch;
   font-size: var(--font-size-xl);
   line-height: var(--line-height-relaxed);
   color: var(--color-text-secondary);
   opacity: 0;
-  animation: pageHeroUp 1000ms var(--ease-expo) 320ms both;
+  animation: pageHeroUp 1000ms var(--ease-expo) 480ms both;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  justify-content: center;
+  margin-top: var(--space-2);
+  opacity: 0;
+  animation: pageHeroUp 1000ms var(--ease-expo) 600ms both;
+}
+
+.inner.left .actions {
+  justify-content: flex-start;
 }
 
 /* Thin rule that draws itself in beneath the copy. */
@@ -143,7 +194,7 @@
   );
   transform-origin: center;
   opacity: 0;
-  animation: pageHeroLine 900ms var(--ease-expo) 480ms both;
+  animation: pageHeroLine 900ms var(--ease-expo) 720ms both;
 }
 
 .inner.left .divider {
@@ -151,6 +202,12 @@
 }
 
 /* --- Motion ---------------------------------------------------------------- */
+@keyframes backdropIn {
+  to {
+    opacity: 1;
+  }
+}
+
 @keyframes pageHeroUp {
   from {
     opacity: 0;
@@ -195,17 +252,50 @@
   }
 }
 
+@keyframes heroOrb {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(3%, -4%, 0) scale(1.12);
+  }
+}
+
+/* --- Responsive ------------------------------------------------------------ */
+@media (max-width: 640px) {
+  /* Thin the decoration on small screens so it never crowds the copy. */
+  .grid {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .backdrop {
+    animation: none;
+    opacity: 1;
+  }
+
+  .orbA,
+  .orbB,
+  .ornament {
+    animation: none;
+  }
+
+  .grid,
+  .orb,
+  .ornament {
+    translate: none;
+    transition: none;
+  }
+
   .eyebrow,
   .title,
   .subtitle,
+  .actions,
   .divider {
     animation: none;
     opacity: 1;
     transform: none;
     filter: none;
-  }
-  .ornament {
-    animation: none;
   }
 }

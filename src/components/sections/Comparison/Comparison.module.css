@@ -1,0 +1,98 @@
+.table {
+  margin-top: var(--space-10);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-6);
+  background: var(--color-bg-muted);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+  color: var(--color-text-muted);
+}
+
+.headerLabel { }
+.headerFactory { text-align: center; }
+.headerLivantaa { text-align: center; }
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-6);
+  border-top: 1px solid var(--color-border);
+  align-items: center;
+  transition: background-color var(--duration-fast) var(--ease-standard);
+}
+
+.row:hover {
+  background: var(--color-bg-subtle);
+}
+
+.label {
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+}
+
+.factory,
+.livantaa {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+}
+
+.factory {
+  color: var(--color-text-muted);
+}
+
+.livantaa {
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.iconFactory {
+  flex-shrink: 0;
+  opacity: 0.4;
+}
+
+.iconLivantaa {
+  flex-shrink: 0;
+}
+
+@media (max-width: 639px) {
+  .header { display: none; }
+
+  .row {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+    padding: var(--space-5) var(--space-4);
+  }
+
+  .label {
+    font-size: var(--font-size-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-text-muted);
+  }
+
+  .factory::before {
+    content: 'Factory: ';
+    font-weight: var(--font-weight-regular);
+    color: var(--color-text-muted);
+  }
+
+  .livantaa::before {
+    content: 'Livantaa: ';
+    font-weight: var(--font-weight-regular);
+  }
+}

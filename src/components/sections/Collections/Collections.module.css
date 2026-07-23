@@ -72,6 +72,15 @@
   color: var(--color-text-on-dark-muted);
 }
 
+.price {
+  margin-top: var(--space-2);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-text-on-dark-subtle);
+}
+
 .arrow {
   display: inline-flex;
   align-items: center;

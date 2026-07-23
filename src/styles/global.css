@@ -6,9 +6,9 @@
 @import './variables.css';
 @import './reset.css';
 @import './typography.css';
+@import './fonts.css';
 
-/* Fonts — Inter (UI/body) + Fraunces (display serif). Swap to self-hosted in prod. */
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap');
+/* Fonts — Self-hosted Inter (UI/body) + Fraunces (display serif) for privacy & performance. */
 
 /* --- Smooth in-page anchor scrolling --- */
 html {
@@ -89,9 +89,11 @@ html {
 @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
   .glass {
     background: var(--glass-bg-strong);
+    box-shadow: var(--shadow-md);
   }
   .glass-dark {
     background: var(--glass-bg-dark-strong);
+    box-shadow: var(--shadow-lg);
   }
 }
 
@@ -167,4 +169,58 @@ html {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-grey-400);
+}
+
+/* =============================================================================
+   SECTION DIVIDER ACCENTS
+   Subtle curved SVG dividers between adjacent same-background sections.
+   ========================================================================== */
+.section-divider {
+  position: relative;
+}
+
+.section-divider::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: var(--color-border);
+  margin: 0 auto;
+}
+
+/* =============================================================================
+   CARD HOVER TILT
+   Subtle 3D perspective tilt on hover for interactive cards.
+   Apply .tilt-card class to enable.
+   ========================================================================== */
+.tilt-card {
+  transition:
+    transform var(--duration-base) var(--ease-standard),
+    box-shadow var(--duration-base) var(--ease-standard);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.tilt-card:hover {
+  transform: perspective(1000px) rotateX(-2deg) rotateY(2deg) translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tilt-card:hover {
+    transform: none;
+  }
+}
+
+/* =============================================================================
+   IMAGE LAZY-LOAD BLUR-UP
+   Apply .img-blur class to images for a blur-to-sharp loading effect.
+   ========================================================================== */
+.img-blur {
+  filter: blur(8px);
+  transition: filter var(--duration-slow) var(--ease-out);
+}
+
+.img-blur.loaded {
+  filter: none;
 }

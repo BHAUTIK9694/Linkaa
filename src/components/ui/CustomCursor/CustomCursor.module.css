@@ -1,5 +1,5 @@
 /* =============================================================================
-   CustomCursor — atelier viewfinder (corner brackets + precise dot + leaf mark)
+   CustomCursor — atelier viewfinder (corner brackets + precise dot)
    -----------------------------------------------------------------------------
    `mix-blend-mode: difference` keeps the monochrome cursor visible on both
    light and dark surfaces (it inverts against whatever is behind it).
@@ -87,21 +87,6 @@
   border-top: 0;
 }
 
-/* --- Brand leaf mark: revealed at centre on media/hover --- */
-.leaf {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 20px;
-  height: 20px;
-  color: var(--color-white);
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.4) rotate(-12deg);
-  transition:
-    opacity var(--duration-base) var(--ease-out),
-    transform var(--duration-base) var(--ease-spring);
-}
-
 /* --- Contextual label (e.g. "View", "Explore") --- */
 .label {
   display: grid;
@@ -134,16 +119,11 @@
   height: 10px;
 }
 
-/* --- Media (images / cards): brackets frame tighter, leaf mark blooms in --- */
+/* --- Media (images / cards): brackets frame tighter --- */
 .frame.media .corners {
   width: 54px;
   height: 54px;
   transform: rotate(0deg);
-}
-
-.frame.media .leaf {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1) rotate(0deg);
 }
 
 /* --- Labelled: corners recede so the word reads cleanly --- */
@@ -152,10 +132,6 @@
   height: 64px;
   opacity: 0.25;
   transform: rotate(0deg);
-}
-
-.frame.labelled .leaf {
-  opacity: 0;
 }
 
 /* --- Press feedback: the whole frame contracts --- */

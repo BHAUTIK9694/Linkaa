@@ -13,7 +13,7 @@ function TestimonialCard({ quote, author, role }) {
   return (
     <Card as="figure" padding="lg" className={styles.card}>
       <Icon name="quote" size={32} className={styles.mark} />
-      <div className={styles.stars} aria-label="Rated 5 out of 5">
+      <div className={styles.stars} role="img" aria-label="Rated 5 out of 5">
         {Array.from({ length: 5 }).map((_, i) => (
           <Icon key={i} name="star" size={15} />
         ))}

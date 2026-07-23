@@ -8,36 +8,24 @@ export const NAV_LINKS = [
   { id: 'contact', label: 'Contact', to: ROUTES.CONTACT },
 ];
 
-/** Grouped footer navigation. */
+/** Grouped footer navigation — only real, navigable pages. */
 export const FOOTER_NAV = [
   {
-    id: 'collections',
-    title: 'Collections',
+    id: 'explore',
+    title: 'Explore',
     links: [
-      { id: 'seating', label: 'Seating', to: ANCHORS.COLLECTIONS },
-      { id: 'tables', label: 'Tables', to: ANCHORS.COLLECTIONS },
-      { id: 'storage', label: 'Storage', to: ANCHORS.COLLECTIONS },
-      { id: 'bespoke', label: 'Bespoke', to: ROUTES.FEATURES },
-    ],
-  },
-  {
-    id: 'company',
-    title: 'Company',
-    links: [
-      { id: 'about', label: 'Our story', to: ROUTES.ABOUT },
+      { id: 'collections', label: 'Collections', to: ANCHORS.COLLECTIONS },
       { id: 'craft', label: 'Craftsmanship', to: ROUTES.FEATURES },
-      { id: 'projects', label: 'Projects', to: ROUTES.ABOUT },
-      { id: 'careers', label: 'Careers', to: ROUTES.CONTACT },
+      { id: 'about', label: 'About us', to: ROUTES.ABOUT },
+      { id: 'contact', label: 'Contact', to: ROUTES.CONTACT },
     ],
   },
   {
-    id: 'support',
-    title: 'Support',
+    id: 'legal',
+    title: 'Legal',
     links: [
-      { id: 'showroom', label: 'Showroom', to: ROUTES.CONTACT },
-      { id: 'contact', label: 'Contact', to: ROUTES.CONTACT },
-      { id: 'care', label: 'Care & repair', to: ROUTES.CONTACT },
-      { id: 'faq', label: 'FAQ', to: ROUTES.CONTACT },
+      { id: 'privacy', label: 'Privacy Policy', to: ROUTES.PRIVACY },
+      { id: 'terms', label: 'Terms of Service', to: ROUTES.TERMS },
     ],
   },
 ];
