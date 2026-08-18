@@ -6,19 +6,37 @@ import { PAGE_SEO, SITE_URL, buildBreadcrumbSchema } from '@constants/seo';
 import { useDocumentTitle } from '@hooks';
 import styles from './About.module.css';
 
-const MILESTONES = [
-  { year: '1989', title: 'Founded in Rajkot', description: 'A single workbench on Kalawad Road with one conviction: furniture should last generations.' },
-  { year: '1998', title: 'Workshop expansion', description: 'Grew to a full 3,000 sq ft workshop with dedicated timber seasoning and finishing rooms.' },
-  { year: '2008', title: 'FSC certification', description: 'Became one of the first Gujarat furniture makers to source exclusively FSC-certified timber.' },
-  { year: '2015', title: 'New showroom', description: 'Opened our flagship showroom on Kalawad Road with live workshop viewing for clients.' },
-  { year: '2020', title: '15,000 pieces milestone', description: 'Delivered our 15,000th piece — a teak dining table for a family in Ahmedabad.' },
-  { year: '2024', title: 'Digital commissioning', description: 'Launched online design consultations, serving clients across India from our Rajkot base.' },
+const HIGHLIGHTS = [
+  {
+    id: 'planning',
+    icon: 'compass',
+    title: 'Clear planning from the start',
+    description: 'Every project begins with practical guidance on layout, finishes, dimensions, and delivery expectations.',
+  },
+  {
+    id: 'quality',
+    icon: 'sparkle',
+    title: 'Consistent quality standards',
+    description: 'Materials, detailing, and finishing are reviewed carefully so every space feels polished and cohesive.',
+  },
+  {
+    id: 'delivery',
+    icon: 'truck',
+    title: 'Smooth coordination',
+    description: 'From approvals to installation, the process is structured to keep communication simple and timelines visible.',
+  },
+  {
+    id: 'support',
+    icon: 'award',
+    title: 'Support beyond delivery',
+    description: 'Aftercare, maintenance guidance, and responsive follow-up help each project stay in great shape over time.',
+  },
 ];
 
 const VALUES = [
-  { id: 'source', icon: 'tree', title: 'Source responsibly', description: 'Every board is FSC-certified and hand-selected for grain, strength, and character.' },
-  { id: 'build', icon: 'ruler', title: 'Build honestly', description: 'Traditional joinery with no shortcuts. One maker per piece, signed when complete.' },
-  { id: 'stand', icon: 'award', title: 'Stand behind every joint', description: 'Lifetime structural guarantee — honoured without exception since 1989.' },
+  { id: 'source', icon: 'tree', title: 'Choose materials carefully', description: 'Every selection is guided by durability, finish quality, and the needs of the space.' },
+  { id: 'build', icon: 'ruler', title: 'Keep the process transparent', description: 'Recommendations, pricing, and delivery expectations are shared clearly before work moves ahead.' },
+  { id: 'stand', icon: 'award', title: 'Focus on long-term value', description: 'The goal is simple: thoughtful results that continue to perform well long after installation.' },
 ];
 
 /**
@@ -42,35 +60,33 @@ function About() {
       />
       <PageHero
         variant="story"
-        eyebrow="Our story"
-        title="A workshop devoted to furniture that lasts"
-        subtitle="Livantaa began at a single bench in Rajkot in 1989 with one conviction: furniture should be built to be handed down, not thrown away."
-        actions={[{ label: 'Visit the showroom', to: ROUTES.CONTACT, icon: 'arrow-right' }]}
+        eyebrow="About us"
+        title="Thoughtful spaces, built around real needs"
+        subtitle="Livantaa combines material quality, practical design, and hands-on coordination to deliver polished spaces for homes, studios, and commercial projects."
+        actions={[{ label: 'Talk to our team', to: ROUTES.CONTACT, icon: 'arrow-right' }]}
       />
 
-      {/* Story prose */}
+      {/* Overview prose */}
       <Section narrow>
         <div className={styles.prose}>
           <Reveal as="p" variant="up">
-            In 1989, our founder set up a single workbench on Kalawad Road with one conviction:
-            furniture should be built to be handed down, not thrown away. Three decades later, that
-            bench has become a full workshop — but the principle hasn&apos;t changed.
+            Livantaa is built around a straightforward approach: understand the brief clearly,
+            recommend the right materials and finishes, and execute each project with care from first
+            conversation to final placement.
           </Reveal>
           <Reveal as="p" variant="up" delay={100}>
-            We start with solid, responsibly sourced timber — teak, sheesham, and mango wood from
-            FSC-certified forests in Central India — and honest joinery: mortise and tenon, hand-cut
-            dovetails, surfaces finished with natural oils rubbed in by hand. No veneers over
-            particleboard, no hidden fasteners, no shortcuts.
+            Our work spans residential, hospitality, and workspace environments, with every solution
+            tailored to the dimensions, use case, and visual direction of the space. The emphasis is
+            always on balance between appearance, performance, and day-to-day usability.
           </Reveal>
           <Reveal as="p" variant="up" delay={200}>
-            Every piece is made to order by a single maker who signs their work when it is complete.
-            That maker sees your furniture from rough board to finished surface, so the person who
-            builds it is accountable for it.
+            Clients work with a team that values clarity. Specifications, options, lead times, and
+            installation details are mapped early so decisions stay simple and surprises stay limited.
           </Reveal>
           <Reveal as="p" variant="up" delay={300}>
-            Over 18,000 pieces have left our workshop for homes, studios, and offices across Gujarat
-            and beyond. Each one carries a lifetime structural guarantee — a promise we&apos;ve
-            honoured without exception since the day we opened.
+            Whether the requirement is a single statement piece or a wider fit-out, the objective
+            stays the same: deliver spaces that feel intentional, durable, and easy to live or work
+            in.
           </Reveal>
         </div>
       </Section>
@@ -79,8 +95,8 @@ function About() {
       <Section tone="subtle">
         <SectionHeading
           eyebrow="Our values"
-          title="Three principles guide everything we make"
-          subtitle="Simple convictions that haven't changed since 1989."
+          title="Three principles guide every project"
+          subtitle="A practical standard for planning, execution, and follow-through."
         />
         <div className={styles.valuesGrid}>
           {VALUES.map((value, index) => (
@@ -97,21 +113,23 @@ function About() {
         </div>
       </Section>
 
-      {/* Timeline / Milestones */}
+      {/* Project highlights */}
       <Section>
         <SectionHeading
-          eyebrow="Our journey"
-          title="35 years of honest craft"
-          subtitle="Key moments that shaped our workshop."
+          eyebrow="How we work"
+          title="Built for clear decisions and reliable delivery"
+          subtitle="The experience is designed to stay practical from concept through completion."
         />
-        <div className={styles.timeline}>
-          {MILESTONES.map((milestone, index) => (
-            <Reveal key={milestone.year} variant="up" delay={index * 80}>
-              <div className={styles.milestone}>
-                <span className={styles.milestoneYear}>{milestone.year}</span>
-                <div className={styles.milestoneContent}>
-                  <h3 className={styles.milestoneTitle}>{milestone.title}</h3>
-                  <p className={styles.milestoneDesc}>{milestone.description}</p>
+        <div className={styles.valuesGrid}>
+          {HIGHLIGHTS.map((highlight, index) => (
+            <Reveal key={highlight.id} variant="up" delay={index * 100}>
+              <div className={styles.valueCard}>
+                <span className={styles.valueIcon}>
+                  <Icon name={highlight.icon} size={24} />
+                </span>
+                <div>
+                  <h3 className={styles.valueTitle}>{highlight.title}</h3>
+                  <p className={styles.valueDesc}>{highlight.description}</p>
                 </div>
               </div>
             </Reveal>
@@ -123,11 +141,11 @@ function About() {
       <Workshop />
       <Sustainability />
       <Testimonials
-        eyebrow="Client stories"
-        title="Lived with, and loved"
-        subtitle="We measure success in decades of daily use, not quarters."
+        eyebrow="Client feedback"
+        title="Delivered with care and consistency"
+        subtitle="A few examples of how clients describe the experience of working with Livantaa."
       />
-      <CTA title="Ready to meet the makers?" subtitle="Book a visit to our Rajkot showroom or start your commission online." />
+      <CTA title="Ready to plan your project?" subtitle="Speak with our team to discuss scope, finishes, timelines, and next steps." />
     </>
   );
 }

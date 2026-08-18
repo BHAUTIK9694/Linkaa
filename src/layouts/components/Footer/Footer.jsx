@@ -152,8 +152,8 @@ function Footer() {
               rel="noopener noreferrer"
               className={styles.poweredBy}
             >
-              <span className={styles.poweredLabel}>Designed & Developed by</span>
-              <span className={styles.synovixaName}>Synovixa</span>
+              <span className={styles.poweredLabel}>Powered by</span>
+              <span className={styles.synovixaName}>Nuvlance</span>
             </a>
           </div>
         </Container>

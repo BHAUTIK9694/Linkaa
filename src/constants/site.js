@@ -7,7 +7,7 @@ export const SITE = {
   tagline: 'Furniture, crafted to endure.',
   description:
     'Livantaa is a furniture atelier based in Rajkot, Gujarat — designing and building bespoke pieces in solid timber, honest joinery, and finishes made to last a lifetime.',
-  email: 'hello@livantaa.in',
+  email: 'info@livantaa.com',
   phone: '+91 281 246 0100',
   whatsapp: '+912812460100',
   address: '12, Kalawad Road, Near Amin Marg, Rajkot 360005, Gujarat, India',

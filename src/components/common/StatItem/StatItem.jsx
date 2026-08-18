@@ -8,7 +8,7 @@ import styles from './StatItem.module.css';
  * Otherwise renders `value` as a static string.
  *
  * @param {object} props
- * @param {string} props.value - display string (e.g. "18,000+" or "Since 1989")
+ * @param {string} props.value - display string (e.g. "18,000+" or "Tailored service")
  * @param {string} props.label
  * @param {number} [props.numericValue] - if set, enables count-up animation
  * @param {string} [props.prefix] - text before the number (e.g. "₹")

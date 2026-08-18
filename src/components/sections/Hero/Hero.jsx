@@ -11,7 +11,7 @@ import styles from './Hero.module.css';
  * passed via props so the hero can be reused across pages.
  */
 function Hero({
-  eyebrow = 'Handcrafted since 1989',
+  eyebrow = 'Made for modern spaces',
   title = 'Bespoke solid wood furniture, handcrafted in Rajkot.',
   subtitle = 'Livantaa designs and builds bespoke pieces in solid timber — shaped by hand, finished with care, and made to be lived with for generations.',
   primaryCta = { label: 'Explore collections', to: ANCHORS.COLLECTIONS },

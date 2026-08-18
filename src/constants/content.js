@@ -65,7 +65,7 @@ export const FEATURES = [
     icon: 'award',
     title: 'Lifetime guarantee',
     description:
-      'We stand behind our craft for life. If a structural joint ever fails, we repair or replace it — no questions asked. We\'ve honoured this promise since 1989.',
+      'We stand behind our craft for life. If a structural joint ever fails, we repair or replace it — no questions asked.',
   },
 ];
 
@@ -73,7 +73,7 @@ export const FEATURES = [
    Headline metrics
    -------------------------------------------------------------------------- */
 export const STATS = [
-  { id: 'years', value: 'Since 1989', label: 'Rajkot, Gujarat' },
+  { id: 'years', value: 'Tailored service', label: 'Across residential and commercial projects' },
   { id: 'pieces', value: '18,000+', label: 'Pieces delivered across Gujarat', numericValue: 18000, suffix: '+' },
   { id: 'timber', value: '100%', label: 'FSC-certified timber', numericValue: 100, suffix: '%' },
   { id: 'guarantee', value: 'Lifetime', label: 'Structural guarantee' },
@@ -253,7 +253,7 @@ export const FAQS = [
     id: 'q5',
     question: 'What does the lifetime guarantee cover?',
     answer:
-      'We guarantee our joinery for life. If a structural joint ever fails under normal use, we will repair or replace the piece free of charge. This guarantee has been in place since we opened in 1989.',
+      'We guarantee our joinery for life. If a structural joint ever fails under normal use, we will repair or replace the piece free of charge.',
   },
   {
     id: 'q6',

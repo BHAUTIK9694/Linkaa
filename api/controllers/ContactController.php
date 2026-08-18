@@ -9,6 +9,8 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../config/mail.php';
+require_once __DIR__ . '/../config/email_templates.php';
 require_once __DIR__ . '/../helpers/sanitize.php';
 require_once __DIR__ . '/../helpers/response.php';
 
@@ -85,6 +87,32 @@ class ContactController
             ':subject' => $subject,
             ':message' => $message,
         ]);
+
+        $adminEmail = contactAdminEmail($name, $email, $phone, $subject, $message);
+        $visitorEmail = contactVisitorEmail($name, $subject, $message);
+        $testRecipient = mailConfig('MAIL_TEST_RECIPIENT');
+        $adminRecipient = $testRecipient !== ''
+            ? $testRecipient
+            : mailConfig('MAIL_ADMIN_TO', 'parthmovaliya8304@gmail.com');
+        $visitorRecipient = $testRecipient !== '' ? $testRecipient : $email;
+
+        try {
+            sendMail(
+                $adminRecipient,
+                $adminEmail['subject'],
+                $adminEmail['text'],
+                $email,
+                $adminEmail['html']
+            );
+        } catch (Throwable $e) {
+            error_log('Contact notification email failed: ' . $e->getMessage());
+        }
+
+        try {
+            sendMail($visitorRecipient, $visitorEmail['subject'], $visitorEmail['text'], null, $visitorEmail['html']);
+        } catch (Throwable $e) {
+            error_log('Contact confirmation email failed: ' . $e->getMessage());
+        }
 
         jsonSuccess(['message' => 'Thank you. We will be in touch within one business day.'], 201);
     }

@@ -12,6 +12,7 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../config/mail.php';
 require_once __DIR__ . '/../config/session.php';
 require_once __DIR__ . '/../helpers/sanitize.php';
 require_once __DIR__ . '/../helpers/response.php';
@@ -151,13 +152,18 @@ class AuthController
             'INSERT INTO password_reset_tokens (admin_id, token, expires_at) VALUES (:id, :token, :exp)'
         )->execute([':id' => $admin['id'], ':token' => $token, ':exp' => $expiresAt]);
 
-        // In production, send this token via email.
-        // For development we return it in the response so you can test the flow.
-        $isDev = ($_ENV['APP_ENV'] ?? getenv('APP_ENV') ?: 'development') === 'development';
-
         $responseData = ['message' => 'If that address is registered, a reset link has been sent.'];
-        if ($isDev) {
-            $responseData['dev_token'] = $token; // Remove this in production
+
+        $appUrl = rtrim((string) ($_ENV['APP_URL'] ?? getenv('APP_URL') ?: 'https://livantaa.com'), '/');
+        $resetUrl = $appUrl . '/admin/reset-password?token=' . urlencode($token);
+        $mailBody = "A password reset was requested for your Livantaa admin account.\n\n"
+            . "Use this link within one hour:\n{$resetUrl}\n\n"
+            . "If you did not request this, you can ignore this email.\n";
+
+        try {
+            sendMail($email, 'Reset your Livantaa admin password', $mailBody);
+        } catch (Throwable $e) {
+            error_log('Password reset email failed: ' . $e->getMessage());
         }
 
         jsonSuccess($responseData);

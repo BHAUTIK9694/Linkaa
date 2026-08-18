@@ -104,17 +104,17 @@ export const PAGE_SEO = {
     ],
   },
   about: {
-    title: `About Us — Our Story & Workshop | ${SITE.name}`,
+    title: `About Us — Design Approach & Process | ${SITE.name}`,
     description:
-      'Since 1989, Livantaa has been handcrafting furniture in Rajkot, Gujarat. One maker per piece, certified timber, honest joinery, and a lifetime guarantee on every joint.',
+      'Learn how Livantaa approaches planning, materials, execution, and project coordination for residential and commercial spaces.',
     keywords: [
       'about Livantaa',
       'furniture workshop Rajkot',
       'handmade furniture India',
       'furniture maker Gujarat',
-      'since 1989 furniture',
+      'design approach furniture',
       'Rajkot furniture atelier',
-      'family furniture workshop',
+      'project delivery furniture',
     ],
   },
   contact: {
@@ -187,7 +187,6 @@ export const LOCAL_BUSINESS_SCHEMA = {
     'https://linkedin.com/company/livantaa',
     'https://youtube.com/@livantaa',
   ],
-  foundingDate: '1989',
   founder: {
     '@type': 'Person',
     name: 'Livantaa Artisans',
