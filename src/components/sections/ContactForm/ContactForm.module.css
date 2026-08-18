@@ -11,6 +11,41 @@
   max-width: 100%;
 }
 
+.fieldset {
+  display: contents;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.fieldset:disabled {
+  cursor: wait;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+}
+
+.toastSuccess {
+  color: var(--color-success);
+  background-color: var(--color-bg-muted);
+  border-color: var(--color-success);
+}
+
+.toastError {
+  color: var(--color-danger);
+  background-color: var(--color-bg-muted);
+  border-color: var(--color-danger);
+}
+
 /* Phone field group */
 .phoneGroup {
   display: flex;

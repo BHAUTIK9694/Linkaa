@@ -11,7 +11,7 @@ export default defineConfig({
   plugins: [
     react(),
     Sitemap({
-      hostname: 'https://livantaa.in',
+      hostname: 'https://livantaa.com',
       dynamicRoutes,
       exclude: ['/admin', '/admin/*'],
       robots: [
@@ -40,6 +40,12 @@ export default defineConfig({
   server: {
     port: 5173,
     open: true,
+    proxy: {
+      '/Livantaa/api': {
+        target: 'http://localhost',
+        changeOrigin: false,
+      },
+    },
   },
   build: {
     outDir: 'dist',

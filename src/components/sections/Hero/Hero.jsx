@@ -27,7 +27,6 @@ function Hero({
           className={styles.bgImg}
           src={heroBg}
           alt=""
-          fetchPriority="high"
         />
         <div className={styles.overlay} />
       </div>

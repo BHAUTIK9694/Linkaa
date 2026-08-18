@@ -4,7 +4,7 @@
  * The API base URL is driven entirely by the VITE_API_BASE_URL environment
  * variable, which Vite inlines at build time:
  *
- *   .env.development  →  http://localhost/Linkaa/api   (XAMPP)
+ *   .env.development  →  http://localhost/Livantaa/api   (XAMPP)
  *   .env.production   →  https://yourdomain.com/api    (live server)
  *
  * Never hardcode a URL here — always go through the env var.

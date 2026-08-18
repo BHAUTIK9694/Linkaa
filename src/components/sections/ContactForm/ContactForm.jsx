@@ -25,6 +25,7 @@ function ContactForm() {
   const [values, setValues] = useState(INITIAL);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState('idle'); // idle | submitting | success | error
+  const [toast, setToast] = useState(null);
 
   const validate = () => {
     const next = {};
@@ -60,14 +61,29 @@ function ContactForm() {
       await contactService.submit(payload);
       setStatus('success');
       setValues(INITIAL);
-    } catch {
+      setToast({ type: 'success', message: 'Your message has been sent successfully.' });
+    } catch (error) {
       setStatus('error');
+      setToast({
+        type: 'error',
+        message: error.message ?? 'We could not send your message. Please try again.',
+      });
     }
   };
 
   if (status === 'success') {
     return (
       <Card padding="lg" className={styles.card}>
+        {toast && (
+          <div
+            className={`${styles.toast} ${styles[`toast${toast.type === 'success' ? 'Success' : 'Error'}`]}`}
+            role={toast.type === 'error' ? 'alert' : 'status'}
+            aria-live="polite"
+          >
+            <Icon name={toast.type === 'success' ? 'check' : 'x'} size={18} />
+            <span>{toast.message}</span>
+          </div>
+        )}
         <div className={styles.successState}>
           <div className={styles.successIcon}>
             <Icon name="check" size={32} />
@@ -87,7 +103,18 @@ function ContactForm() {
 
   return (
     <Card padding="lg" className={styles.card}>
+      {toast && (
+        <div
+          className={`${styles.toast} ${styles[`toast${toast.type === 'success' ? 'Success' : 'Error'}`]}`}
+          role={toast.type === 'error' ? 'alert' : 'status'}
+          aria-live="polite"
+        >
+          <Icon name={toast.type === 'success' ? 'check' : 'x'} size={18} />
+          <span>{toast.message}</span>
+        </div>
+      )}
       <form className={styles.form} onSubmit={handleSubmit} noValidate>
+        <fieldset disabled={status === 'submitting'} className={styles.fieldset}>
         <Input
           label="Full name"
           name="name"
@@ -181,19 +208,16 @@ function ContactForm() {
         />
 
         <Button type="submit" size="lg" fullWidth disabled={status === 'submitting'}>
-          {status === 'submitting' ? <Spinner size={18} label="Sending" /> : 'Send message'}
+          {status === 'submitting' ? <Spinner size={18} label="Sending your message" /> : 'Send message'}
         </Button>
+        </fieldset>
 
         <p className={styles.responseTime}>
           <Icon name="clock" size={14} />
           We reply within 24 hours
         </p>
 
-        <div aria-live="polite" className={styles.status}>
-          {status === 'error' && (
-            <p className={styles.error}>Something went wrong. Please try again.</p>
-          )}
-        </div>
+        {toast && status === 'error' && <div className={styles.status} />}
       </form>
     </Card>
   );

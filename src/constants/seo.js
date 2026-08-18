@@ -8,7 +8,7 @@
 import { SITE } from './site';
 
 /** Production site URL — update in .env.production before deploying */
-export const SITE_URL = 'https://livantaa.in';
+export const SITE_URL = import.meta.env.VITE_SITE_URL || 'https://livantaa.com';
 
 /** Default OG image path (relative to public/) */
 export const DEFAULT_OG_IMAGE = '/og-image.jpg';
